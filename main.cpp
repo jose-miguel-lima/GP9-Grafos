@@ -21,17 +21,11 @@ int main() {
     Node *no = new Node(2);
     cout << "o id é " << no->getId() << endl;
 
+    Edge *aresta = new Edge(4);
 
-    cout << "o grau de entrada é " << no->getInDegree() << endl;
+    cout << "o id alvo é " << aresta->getTargetId() << endl;
 
-    no->incrementInDegree();
-    no->incrementInDegree();
 
-    cout << "o grau de entrada é " << no->getInDegree() << endl;
-
-    no->decrementInDegree();
-
-    cout << "o grau de entrada é " << no->getInDegree() << endl;
 
 
 
