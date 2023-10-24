@@ -22,7 +22,16 @@ int main() {
     cout << "o id é " << no->getId() << endl;
 
 
-    cout << "o id é " << no->getId() << endl;
+    cout << "o grau de entrada é " << no->getInDegree() << endl;
+
+    no->incrementInDegree();
+    no->incrementInDegree();
+
+    cout << "o grau de entrada é " << no->getInDegree() << endl;
+
+    no->decrementInDegree();
+
+    cout << "o grau de entrada é " << no->getInDegree() << endl;
 
 
 

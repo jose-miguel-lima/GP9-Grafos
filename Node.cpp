@@ -4,6 +4,8 @@ using namespace std;
 
 Node::Node(int id){
     this->id = id;
+    this->in_degree = 0;
+    this->out_degree = 0;
 }
 
 Node::~Node(){}
@@ -56,6 +58,23 @@ void Node::setVisited(bool visited){
     this->visited = visited;
 }
 
+//OUTROS MÉTODOS
+
+void Node::incrementOutDegree(){
+    this->out_degree ++;
+}
+
+void Node::decrementOutDegree(){
+    this->out_degree --;
+}
+
+void Node::incrementInDegree(){
+    this->in_degree ++;
+}
+
+void Node::decrementInDegree(){
+    this->in_degree --;
+}
 
 
 

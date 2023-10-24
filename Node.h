@@ -35,24 +35,24 @@ class Node {
         float getWeight();
         Node* getNextNode();
 
-        //falta esse
-        Edge* getEdge(int id_alvo);
+        
+        //Edge* getEdge(int id_alvo);
         bool getVisited();
         // Setters
         void setNextNode(Node* node);
         void setWeight(float weight);
         void setVisited(bool visited);
         // Other methods
-        bool searchEdge(int target_id);
-        void insertEdge(int target_id, float weight);
-        void removeAllEdges();
-        int removeEdge(int id, bool directed, Node* target_node);
+        //bool searchEdge(int target_id);
+        //void insertEdge(int target_id, float weight);
+        //void removeAllEdges();
+        //int removeEdge(int id, bool directed, Node* target_node);
         void incrementOutDegree();
         void decrementOutDegree();
         void incrementInDegree();
         void decrementInDegree();
-        Edge* hasEdgeBetween(int target_id);
-        bool verifyEdge(int target_id);
+        //Edge* hasEdgeBetween(int target_id);
+        //bool verifyEdge(int target_id);
         // Auxiliar methods
 };
 
