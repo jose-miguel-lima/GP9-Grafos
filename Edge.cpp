@@ -4,10 +4,22 @@ using namespace std;
 
 //CONSTRUTOR E DESTRUTOR
 
-//esse construtor acredito que será chamado em nó, então vai ser conmstruida uma aresta por meio de um método de nó, então esse construtor será acrescentado informações
+
 Edge::Edge(int target_id) {
     this->target_id = target_id;
 }
+
+// Edge::Edge(int origem, int target_id) {
+//     this->target_id = target_id;
+//     this->origem = origem;
+//     this->weight = 0;
+// }
+
+// Edge::Edge(int origem, int target_id, float weight) {
+//     this->target_id = target_id;
+//     this->origem = origem;
+//     this->weight = weight;
+// }
 
 Edge::~Edge(){}
 
