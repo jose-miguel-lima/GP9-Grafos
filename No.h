@@ -19,6 +19,7 @@ class No{  ///Falta DESTRUTOR
         Aresta* ultimaAresta;
 
     public:
+        No(int idNo, float pesoNo);
         No(int idNo);
 
         ~No();
