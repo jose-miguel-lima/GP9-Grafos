@@ -19,6 +19,10 @@ class No{  ///Falta DESTRUTOR
         Aresta* ultimaAresta;
 
     public:
+        No(int idNo);
+
+        ~No();
+
         //GETTERS
         int getIdNo();
         float getPesoNo();
@@ -48,7 +52,7 @@ class No{  ///Falta DESTRUTOR
         //bool verificaAresta(int idNoDestino); //pensei que fosse igual "procuraAresta"
 
         //METODOS AUXILIARES
-        
+
 
 };
 
