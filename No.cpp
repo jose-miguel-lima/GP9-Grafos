@@ -82,3 +82,99 @@ Aresta* No::getAresta(int idNoDestino){
 
 
 //SETTERS
+void No::setProxNo(No* no){ //Tratamento de excessão? não pois só consigo fazer no 'insereNo' de Grafo
+    this->proxNo = no;
+}
+
+void No::setPesoNo(float peso){
+    this->pesoNo = peso;
+}
+
+void No::setVisita(bool visitadoOuNao){
+    this->visitado = visitadoOuNao;
+}
+
+//OUTROS METODOS
+bool No::procuraAresta(int idNoDestino){
+    if(primeiraAresta != NULL){
+        Aresta* auxAresta = primeiraAresta;
+        int idNoAtual = this->getIdNo();
+        while(auxAresta != NULL){
+            if( idNoAtual == auxAresta->getIdNoOrigem() && idNoDestino == auxAresta->getIdNoDestino())
+                return true;
+
+            auxAresta = auxAresta->getProxAresta();
+        }
+    } else {
+        return false;
+    }
+}
+
+void No::insereAresta(int idNoDestino, float peso){
+    Aresta* novaAresta = new Aresta(idNoDestino, this->idNo);
+    novaAresta->setPesoAresta(peso);
+    
+    if(this->primeiraAresta == NULL){
+        this->primeiraAresta = novaAresta;
+        this->ultimaAresta = novaAresta;
+    } else {
+        this->ultimaAresta->setProxAresta(novaAresta);
+        this->ultimaAresta = novaAresta;    
+    }
+    
+    incrementaGrauSaida();
+
+}
+
+void No::removeTodasArestas(){
+    Aresta* auxAresta = primeiraAresta;
+
+    while(auxAresta != NULL){
+        primeiraAresta = auxAresta->getProxAresta();
+        delete auxAresta;
+        auxAresta = primeiraAresta;
+    }
+
+    this->ultimaAresta = NULL;
+}
+
+//int removeAresta(int id, bool directed, No* noDestino); //não entendi os parâmetros
+        
+void No::incrementaGrauSaida(){
+    this->grauSaida++;
+}
+
+void No::decrementaGrauSaida(){
+    this->grauSaida--;
+}
+        
+void No::incrementaGrauEntrada(){
+    this->grauEntrada++;
+}
+        
+void No::decrementaGrauEntrada(){
+    this->grauEntrada--;
+}
+
+/*
+Aresta* No::temArestaEntre(int idNoDestino){ //IGUAL "getAresta(int idNoDestino)"
+    if(primeiraAresta != NULL){
+        Aresta* auxAresta = primeiraAresta;
+        int idNoAtual = this->getIdNo();
+        while(auxAresta != NULL){
+            if( idNoAtual == auxAresta->getIdNoOrigem() && idNoDestino == auxAresta->getIdNoDestino())
+                return auxAresta;
+
+            auxAresta = auxAresta->getProxAresta();
+        }
+    } else {
+        return NULL;
+    }
+}
+*/
+
+    
+//bool verificaAresta(int idNoDestino); //IGUAL "procuraAresta"
+
+
+//METODOS AUXILIARES
