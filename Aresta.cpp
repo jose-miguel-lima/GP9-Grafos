@@ -17,6 +17,8 @@ Aresta::Aresta(int idNoDestino){
     this->proxAresta = NULL;
 }
 
+Aresta::~Aresta(){}
+
 int Aresta::getIdNoOrigem(){
     return this->idNoOrigem;
 }

@@ -75,9 +75,10 @@ Aresta* No::getAresta(int idNoDestino){
 
             auxAresta = auxAresta->getProxAresta();
         }
-    } else {
-        return NULL;
     }
+    
+    return NULL;
+    
 }
 
 
@@ -105,9 +106,10 @@ bool No::procuraAresta(int idNoDestino){
 
             auxAresta = auxAresta->getProxAresta();
         }
-    } else {
-        return false;
     }
+    
+    return false;
+    
 }
 
 void No::insereAresta(int idNoDestino, float peso){
@@ -131,7 +133,7 @@ void No::removeTodasArestas(){
 
     while(auxAresta != NULL){
         primeiraAresta = auxAresta->getProxAresta();
-        delete auxAresta;
+        delete [] auxAresta;
         auxAresta = primeiraAresta;
     }
 
