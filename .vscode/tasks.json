@@ -9,7 +9,7 @@
                 "-g",
                 "${workspaceFolder}/*.cpp",
                 "-o",
-                "${workspaceFolder}/trabalhoGrafos"
+                "${workspaceFolder}/executavel"
             ],
             "options": {
                 "cwd": "${fileDirname}"

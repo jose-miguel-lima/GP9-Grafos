@@ -67,6 +67,12 @@ class Grafo {
 
         int distanciaMinima(bool visitados[], float distancia[]); //o vetor de distancia float ??
 
+        //METODOS ADICIONAIS
+        //void incrementaNumArestas();
+        //void decrementaNumArestas();
+        //void incrementaOrdem();
+        //void decrementaOrdem();
+        void incrementaGrauEntradaPorId(int idNo);
 
         //MÉTODOS FASE 1
         void topologicalSorting(); //ordenação topologica?
