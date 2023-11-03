@@ -5,8 +5,18 @@
 using namespace std;
 
 int main(){
-    
-    cout << "Olá Grafos!"<<endl;    
+    cout << "Olá Grafos!"<<endl;   
+
+    Grafo* grafo = new Grafo(0, false, false, false);
+    for(int i = 0; i < 4; i++)
+        grafo->insereNo(i);
+
+    grafo->insereNo(1);
+
+    cout << "ordem: " << grafo->getOrdem() << endl;
+    cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
+    cout << grafo->getUltimoNo()->getIdNo() << endl;    //id do ultimo no
+
 
 return 0;
 }

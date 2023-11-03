@@ -72,6 +72,7 @@ class Grafo {
         //void decrementaNumArestas();
         //void incrementaOrdem();
         //void decrementaOrdem();
+        void incrementaGrauEntradaPorId(int idNo);
 
         //MÉTODOS FASE 1
         void topologicalSorting(); //ordenação topologica?
