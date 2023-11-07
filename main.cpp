@@ -26,11 +26,11 @@ return 0;
 #include <fstream>
 #include <string>
 #include <math.h>
-#include <utility>
-#include <tuple>
-#include <iomanip>
+#include <utility> //armazena uma dupla de dados ou objetos (first, second) : https://terminalroot.com.br/2021/08/cpp-pair-e-tuple.html
+#include <tuple>  //parecido com o de cima, mas guarda mais de 2 elementos,para acessar:get<x>("variavel") : https://terminalroot.com.br/2021/08/cpp-pair-e-tuple.html
+#include <iomanip> //manipula a formatação de saída dos números : https://terminalroot.com.br/2021/05/utilizando-a-biblioteca-iomanip-cpp.html
 #include <stdlib.h>
-#include <chrono>
+#include <chrono>  //biblioteca de tempo
 #include "Grafo.h"
 #include "No.h"
 
