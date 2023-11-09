@@ -10,12 +10,12 @@ Aresta::Aresta(int idNoOrigem, int idNoDestino){
     this->proxAresta = NULL;
 }   
 
-Aresta::Aresta(int idNoDestino){
-    this->idNoOrigem = 0;
-    this->idNoDestino = idNoDestino;
-    this->pesoAresta = 0;
-    this->proxAresta = NULL;
-}
+//Aresta::Aresta(int idNoDestino){
+//    this->idNoOrigem = 0;
+//    this->idNoDestino = idNoDestino;
+//    this->pesoAresta = 0;
+//    this->proxAresta = NULL;
+//}
 
 Aresta::~Aresta(){}
 

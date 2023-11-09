@@ -113,7 +113,7 @@ bool No::procuraAresta(int idNoDestino){
 }
 
 void No::insereAresta(int idNoDestino, float peso){
-    Aresta* novaAresta = new Aresta(idNoDestino, this->idNo);
+    Aresta* novaAresta = new Aresta(this->idNo, idNoDestino);
     novaAresta->setPesoAresta(peso);
     
     if(this->primeiraAresta == NULL){
@@ -121,7 +121,7 @@ void No::insereAresta(int idNoDestino, float peso){
         this->ultimaAresta = novaAresta;
     } else {
         this->ultimaAresta->setProxAresta(novaAresta);
-        this->ultimaAresta = novaAresta;    
+        this->ultimaAresta = novaAresta;   
     }
     
     incrementaGrauSaida();
