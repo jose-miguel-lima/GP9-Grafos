@@ -62,6 +62,8 @@ void Grafo::insereNo(int idNo){ //SERÁ QUE NÃO PRECISA DO PESO COMO PARÂMETRO
             this->ultimoNo = novoNo;
         }
         this->ordem++;
+    } else {
+        cout << "Não foi possivel inserir nó, pois ja existe esse id de nó." << endl;
     }
 }
 
