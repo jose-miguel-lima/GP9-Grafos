@@ -49,8 +49,6 @@ class No{  ///Falta DESTRUTOR
         void decrementaGrauSaida();
         void incrementaGrauEntrada();
         void decrementaGrauEntrada();
-        //Aresta* temArestaEntre(int idNoDestino); // IGUAL "getAresta(int idNoDestino)"
-        //bool verificaAresta(int idNoDestino); //IGUAL "procuraAresta"
 
         //METODOS AUXILIARES
 
