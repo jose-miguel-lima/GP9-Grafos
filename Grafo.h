@@ -66,6 +66,7 @@ class Grafo {
         bool existeAresta(int idNoOrigem, int idNoDestino);
 
         int distanciaMinima(bool visitados[], float distancia[]); //o vetor de distancia float ??
+        //Sim, é float pq o peso das arestas é float. distancia == pesoAresta
 
         //METODOS ADICIONAIS
         //void incrementaNumArestas();

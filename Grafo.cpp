@@ -103,7 +103,6 @@ bool Grafo::existeNo(int idNo){
         No* noAux = this->primeiroNo;
         while(noAux != NULL){
             if(noAux->getIdNo() == idNo){
-                cout << "Não foi possível adicionar o nó, esse id já existe!" << endl;
                 return true;
             }
             noAux = noAux->getProxNo();
