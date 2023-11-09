@@ -11,7 +11,7 @@ int main(){
     for(int i = 0; i < 4; i++)
         grafo->insereNo(i);
 
-    //grafo->insereAresta(1, 2, 1);
+    grafo->insereAresta(1, 2, 1);
     //grafo->getNo(1)->insereAresta(2, 0);
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
 
