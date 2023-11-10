@@ -87,10 +87,10 @@ void Grafo::insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta){
 void Grafo::removeNo(int idNo){
     if(existeNo(idNo)){
         No* noAnterior = this->primeiroNo;
-        if(this->primeiroNo->getIdNo() == idNo){
+        if(this->primeiroNo->getIdNo() == idNo){ //se for remover o primeiro
             this->primeiroNo = this->primeiroNo->getProxNo();
             delete noAnterior;
-        } else {
+        } else { //não é o primeiro a ser removido
             No* noDelete = noAnterior->getProxNo();
             while(noDelete->getIdNo() != idNo){
                 noDelete = noDelete->getProxNo();
@@ -139,7 +139,7 @@ bool Grafo::existeAresta(int idNoOrigem, int idNoDestino){
     }
 }
 
-int Grafo::distanciaMinima(bool visitados[], float distancia[]){ //o vetor de distancia float ??
+int Grafo::distanciaMinima(bool visitados[], float distancia[]){
 
 } 
 

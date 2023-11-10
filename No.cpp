@@ -149,7 +149,7 @@ void No::removeTodasArestas(){
     this->ultimaAresta = NULL;
 }
 
-int removeAresta(int id, bool directed, No* noDestino){
+int No::removeAresta(int id, bool direcionada, No* noDestino){
     
     return 1;
 }

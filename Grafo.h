@@ -55,7 +55,7 @@ class Grafo {
         //OUTROS MÉTODOS:
         void insereNo(int idNo);
 
-        void insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta);
+        void insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta);//VERIFICAR DIREÇÃO
 
         void removeNo(int idNo);
 

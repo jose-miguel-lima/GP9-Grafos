@@ -5,24 +5,23 @@
 using namespace std;
 
 int main(){
-    cout << "Olá Grafos!"<<endl;   
 
     Grafo* grafo = new Grafo(0, false, false, false);
-    for(int i = 0; i < 4; i++)
+    for(int i = 1; i < 4; i++)
         grafo->insereNo(i);
 
     grafo->insereAresta(1, 2, 1);
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
 
     cout << "ordem: " << grafo->getOrdem() << endl;
-    cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
+    cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
 
     grafo->~Grafo();
 
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
 
     cout << "ordem: " << grafo->getOrdem() << endl;
-    cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
+    cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
     
 
 
