@@ -12,12 +12,13 @@ int main(){
         grafo->insereNo(i);
 
     grafo->insereAresta(1, 2, 1);
-    //grafo->getNo(1)->insereAresta(2, 0);
+    grafo->~Grafo();
+    
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
 
-    //cout << "ordem: " << grafo->getOrdem() << endl;
-    //cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
-    //cout << grafo->getUltimoNo()->getIdNo() << endl;    //id do ultimo no
+    cout << "ordem: " << grafo->getOrdem() << endl;
+    cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
+
 
 
 return 0;

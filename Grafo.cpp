@@ -14,7 +14,12 @@ Grafo::Grafo(int ordem, bool direcionado, bool pesoArestas, bool pesoNos){
 }
 
 Grafo::~Grafo(){
-
+    No *noAtual = this->primeiroNo;
+    while(noAtual != nullptr){
+        No *auxNo = noAtual->getProxNo();
+        noAtual->~No();
+        noAtual = auxNo;
+    }
 }
 
 //GETTERS
