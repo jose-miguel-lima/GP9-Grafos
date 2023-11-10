@@ -7,7 +7,7 @@
 
 using namespace std;
 
-class No{  ///Falta DESTRUTOR 
+class No{
     private:
         int idNo;
         float pesoNo;
@@ -21,7 +21,6 @@ class No{  ///Falta DESTRUTOR
     public:
         No(int idNo, float pesoNo);
         No(int idNo);
-
         ~No();
 
         //GETTERS

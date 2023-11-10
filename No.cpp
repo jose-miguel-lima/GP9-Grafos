@@ -29,7 +29,16 @@ No::No(int idNo){
 
 //Destrutor
 
-No::~No(){}
+No::~No(){
+    Aresta* arestaAtual = this->primeiraAresta;
+    while (arestaAtual != nullptr)
+    {
+        Aresta* auxAresta = arestaAtual->getProxAresta();
+        delete arestaAtual;
+        arestaAtual = auxAresta;
+    }
+    
+}
 
 //GETTERS
 
