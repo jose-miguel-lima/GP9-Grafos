@@ -149,7 +149,10 @@ void No::removeTodasArestas(){
     this->ultimaAresta = NULL;
 }
 
-//int removeAresta(int id, bool directed, No* noDestino); //não entendi os parâmetros
+int removeAresta(int id, bool directed, No* noDestino){
+    
+    return 1;
+}
         
 void No::incrementaGrauSaida(){
     this->grauSaida++;
@@ -166,26 +169,5 @@ void No::incrementaGrauEntrada(){
 void No::decrementaGrauEntrada(){
     this->grauEntrada--;
 }
-
-/*
-Aresta* No::temArestaEntre(int idNoDestino){ //IGUAL "getAresta(int idNoDestino)"
-    if(primeiraAresta != NULL){
-        Aresta* auxAresta = primeiraAresta;
-        int idNoAtual = this->getIdNo();
-        while(auxAresta != NULL){
-            if( idNoAtual == auxAresta->getIdNoOrigem() && idNoDestino == auxAresta->getIdNoDestino())
-                return auxAresta;
-
-            auxAresta = auxAresta->getProxAresta();
-        }
-    } else {
-        return NULL;
-    }
-}
-*/
-
-    
-//bool verificaAresta(int idNoDestino); //IGUAL "procuraAresta"
-
 
 //METODOS AUXILIARES

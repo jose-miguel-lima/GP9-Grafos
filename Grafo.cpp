@@ -17,7 +17,7 @@ Grafo::~Grafo(){
     No *noAtual = this->primeiroNo;
     while(noAtual != nullptr){
         No *auxNo = noAtual->getProxNo();
-        noAtual->~No();
+        delete noAtual;
         noAtual = auxNo;
     }
 }
