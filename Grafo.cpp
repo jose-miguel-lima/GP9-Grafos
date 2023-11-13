@@ -27,7 +27,7 @@ int Grafo::getOrdem(){
     return this->ordem;
 }
 
-int Grafo::getNumArestas(){ //só retorna o numero de arestas
+int Grafo::getNumArestas(){
     return this->numArestas;
 }
         
@@ -56,7 +56,6 @@ No* Grafo::getUltimoNo(){
 void Grafo::insereNo(int idNo){ //SERÁ QUE NÃO PRECISA DO PESO COMO PARÂMETRO ???
     
     if(!existeNo(idNo)){
-
         if(primeiroNo != NULL){
             No* novoNo = new No(idNo);
             this->ultimoNo->setProxNo(novoNo);
@@ -72,20 +71,46 @@ void Grafo::insereNo(int idNo){ //SERÁ QUE NÃO PRECISA DO PESO COMO PARÂMETRO
     }
 }
 
-void Grafo::insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta){
-    No* noAux = this->primeiroNo;
-    while(noAux != NULL){
-        if(noAux->getIdNo() == idNoOrigem){
-            noAux->insereAresta(idNoDestino, pesoAresta);
-            incrementaGrauEntradaPorId(idNoDestino); //grau de entrada++ no noDestino
-            break;
+void Grafo::insereNoPonderado(int idNo, float pesoNo){
+
+    if(!existeNo(idNo)){
+        if(primeiroNo != NULL){
+        No* novoNo = new No(idNo, pesoNo);
+            this->ultimoNo->setProxNo(novoNo);
+            this->ultimoNo = novoNo;
+        } else { //primeiroNo = NULL
+            No* novoNo = new No(idNo, pesoNo);
+            this->primeiroNo = novoNo;
+            this->ultimoNo = novoNo;
         }
-        noAux = noAux->getProxNo();
+        this->ordem++;
+    } else {
+        cout << "Não foi possivel inserir nó, pois ja existe esse id de nó." << endl;
     }
+}
+
+void Grafo::insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta){
+    if(!existeNo(idNoOrigem)){
+        this->insereNo(idNoOrigem);
+    }
+    if(!existeNo(idNoDestino)){
+        this->insereNo(idNoDestino);
+    }
+    
+    No* origem = getNo(idNoOrigem);
+    No* destino = getNo(idNoDestino);
+
+    origem->insereAresta(idNoDestino, pesoAresta);
+    if(!this->direcionado){ //Se não é direcionado tem aresta para ambos os lados
+        destino->insereAresta(idNoOrigem, pesoAresta);
+    }
+    
 }
 
 void Grafo::removeNo(int idNo){
     if(existeNo(idNo)){
+        //ADD REMOVER TODAS ARESTAS LIGADAS AO NÓ
+
         No* noAnterior = this->primeiroNo;
         if(this->primeiroNo->getIdNo() == idNo){ //se for remover o primeiro
             this->primeiroNo = this->primeiroNo->getProxNo();
@@ -139,12 +164,10 @@ bool Grafo::existeAresta(int idNoOrigem, int idNoDestino){
     }
 }
 
-int Grafo::distanciaMinima(bool visitados[], float distancia[]){
-
-} 
+//int Grafo::distanciaMinima(bool visitados[], float distancia[]){}
 
 
-//MÉTODOS ADICIONAIS
+//MÉTODOS ADICIONADOS POR NÓS
 void Grafo::incrementaGrauEntradaPorId(int idNo){
     No* noAux = this->primeiroNo;
     while(noAux != NULL){

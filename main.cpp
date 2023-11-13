@@ -12,13 +12,16 @@ int main(){
 
     grafo->insereAresta(1, 2, 1);
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
 
     cout << "ordem: " << grafo->getOrdem() << endl;
     cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
 
+    cout << "Destrutor foi chamado!" << endl;
     grafo->~Grafo();
 
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
 
     cout << "ordem: " << grafo->getOrdem() << endl;
     cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
