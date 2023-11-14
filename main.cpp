@@ -20,6 +20,10 @@ int main(){
 
     grafo->printGraph();
 
+    grafo->getPrimeiroNo()->removeAresta(1,1,grafo->getPrimeiroNo()->getProxNo());
+    cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
+
     //cout << "Destrutor foi chamado!" << endl;
     grafo->~Grafo();
 
@@ -31,7 +35,7 @@ int main(){
     
     //grafo->printGraph();
     //cout << "TA IMPRIMINDO LIXO DE MEMÓRIA, acredito que seja por causa dos destrutores" << endl;
-return 0;
+    return 0;
 }
 
 /*
