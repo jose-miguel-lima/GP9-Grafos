@@ -20,6 +20,10 @@ Grafo::~Grafo(){
         delete noAtual;
         noAtual = auxNo;
     }
+    this->ordem = 0;
+    this->numArestas = 0;
+    this->primeiroNo = NULL;
+    this->ultimoNo = NULL;
 }
 
 //GETTERS

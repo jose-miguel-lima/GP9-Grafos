@@ -37,7 +37,8 @@ No::~No(){
         delete arestaAtual;
         arestaAtual = auxAresta;
     }
-    
+    this->primeiraAresta = NULL;
+    this->ultimaAresta = NULL;
 }
 
 //GETTERS

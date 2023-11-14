@@ -22,7 +22,7 @@ int main(){
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
 
     cout << "ordem: " << grafo->getOrdem() << endl;
-    cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
+    
     
 
 
