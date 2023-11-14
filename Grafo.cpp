@@ -176,3 +176,21 @@ void Grafo::incrementaGrauEntradaPorId(int idNo){
         noAux = noAux->getProxNo();
     }
 }
+
+
+//metodos auxiliares
+void Grafo::printGraph(){
+    if(this->getPrimeiroNo() != NULL){
+        No* noAux = this->primeiroNo;
+        while (noAux != NULL){
+            cout << noAux->getIdNo();
+            Aresta* auxAresta = noAux->getPrimeiraAresta();
+            while (auxAresta != NULL){
+                cout << "-->" << auxAresta->getIdNoDestino();
+                auxAresta = auxAresta->getProxAresta();
+            }
+            cout << endl;
+            noAux = noAux->getProxNo();
+        }
+    }
+}

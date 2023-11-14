@@ -75,7 +75,6 @@ class Grafo {
         void incrementaGrauEntradaPorId(int idNo);
         void insereNoPonderado(int idNo, float pesoNo);
 
-
         //MÉTODOS FASE 1
         void topologicalSorting(); //ordenação topologica?
 
