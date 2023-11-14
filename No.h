@@ -43,14 +43,13 @@ class No{
         bool procuraAresta(int idNoDestino);
         void insereAresta(int idNoDestino, float peso);
         void removeTodasArestas();
-        int removeAresta(int id, bool direcionada, No* noDestino);
+        void removeAresta(int idNoDestino, bool direcionada, No* noDestino);
         void incrementaGrauSaida();
         void decrementaGrauSaida();
         void incrementaGrauEntrada();
         void decrementaGrauEntrada();
 
         //METODOS AUXILIARES
-
 
 };
 
