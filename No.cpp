@@ -150,9 +150,30 @@ void No::removeTodasArestas(){
     this->ultimaAresta = NULL;
 }
 
-int removeAresta(int id, bool directed, No* noDestino){
-    
-    return 1;
+void No::removeAresta(int idNoDestino, bool direcionada, No* noDestino){//retorno era int
+    if(this->procuraAresta(idNoDestino)){
+        Aresta* proxAresta = this->primeiraAresta->getProxAresta();
+        if(this->primeiraAresta == this->getAresta(idNoDestino)){ //é a primeira aresta
+            delete this->primeiraAresta;
+            this->primeiraAresta = proxAresta;
+        }
+        else {
+            Aresta* antAresta = this->getPrimeiraAresta();
+            while(proxAresta->getIdNoDestino() != idNoDestino){
+                antAresta = proxAresta;
+                proxAresta = proxAresta->getProxAresta();
+            }
+            if(proxAresta == this->getUltimaAresta()){ //é a ultima
+                this->ultimaAresta = antAresta;
+            }
+            else {
+                antAresta->setProxAresta(proxAresta->getProxAresta());
+            }
+            delete proxAresta;
+        }
+    }
+    if(!direcionada)//remove a aresta de volta
+        noDestino->removeAresta(this->getIdNo(), true, this);
 }
         
 void No::incrementaGrauSaida(){

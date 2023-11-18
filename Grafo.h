@@ -55,9 +55,9 @@ class Grafo {
         //OUTROS MÉTODOS:
         void insereNo(int idNo);
 
-        void insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta);
+        void insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta);//VERIFICAR DIREÇÃO
 
-        void removeNo(int idNo);
+        void removeNo(int idNo); //remover arestas do nó
 
         bool existeNo(int idNo);
 
@@ -65,15 +65,15 @@ class Grafo {
 
         bool existeAresta(int idNoOrigem, int idNoDestino);
 
-        int distanciaMinima(bool visitados[], float distancia[]); //o vetor de distancia float ??
-        //Sim, é float pq o peso das arestas é float. distancia == pesoAresta
+        //int distanciaMinima(bool visitados[], float distancia[]); //achamos que pode não usar
 
-        //METODOS ADICIONAIS
+        //METODOS ADICIONADOS POR NÓS
         //void incrementaNumArestas();
         //void decrementaNumArestas();
         //void incrementaOrdem();
         //void decrementaOrdem();
         void incrementaGrauEntradaPorId(int idNo);
+        void insereNoPonderado(int idNo, float pesoNo);
 
         //MÉTODOS FASE 1
         void topologicalSorting(); //ordenação topologica?

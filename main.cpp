@@ -5,29 +5,44 @@
 using namespace std;
 
 int main(){
-    cout << "Olá Grafos!"<<endl;   
 
     Grafo* grafo = new Grafo(0, false, false, false);
-    for(int i = 0; i < 4; i++)
+    for(int i = 1; i < 4; i++)
         grafo->insereNo(i);
 
     grafo->insereAresta(1, 2, 1);
+    grafo->insereAresta(3, 1, 1);
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
 
     cout << "ordem: " << grafo->getOrdem() << endl;
-    cout << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
+    cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
 
+    grafo->printGraph();
+
+    grafo->getPrimeiroNo()->removeAresta(1,1,grafo->getPrimeiroNo()->getProxNo());
+    cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
+
+<<<<<<< HEAD
+    cout << "ordem: " << grafo->getOrdem() << endl;
+    
+    
+
+=======
+    //cout << "Destrutor foi chamado!" << endl;
     grafo->~Grafo();
+>>>>>>> dev-jose
 
-    cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    //cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
+    //cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
 
-    cout << "ordem: " << grafo->getOrdem() << endl;
+    //cout << "ordem: " << grafo->getOrdem() << endl;
+    //cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
     
-    
-
-
-
-return 0;
+    //grafo->printGraph();
+    //cout << "TA IMPRIMINDO LIXO DE MEMÓRIA, acredito que seja por causa dos destrutores" << endl;
+    return 0;
 }
 
 /*
