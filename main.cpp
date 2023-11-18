@@ -24,15 +24,10 @@ int main(){
     cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
     cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
 
-<<<<<<< HEAD
     cout << "ordem: " << grafo->getOrdem() << endl;
-    
-    
 
-=======
     //cout << "Destrutor foi chamado!" << endl;
     grafo->~Grafo();
->>>>>>> dev-jose
 
     //cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
     //cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
