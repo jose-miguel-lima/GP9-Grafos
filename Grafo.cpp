@@ -162,13 +162,69 @@ No* Grafo::getNo(int idNo){
 bool Grafo::existeAresta(int idNoOrigem, int idNoDestino){
     if(existeNo(idNoOrigem) && existeNo(idNoDestino)){
         No* noAux = getNo(idNoOrigem);
-        return noAux->procuraAresta(idNoDestino); //retorna bool
+        return noAux->temAresta(idNoDestino); //retorna bool
     } else {
         return false;
     }
 }
 
-//int Grafo::distanciaMinima(bool visitados[], float distancia[]){}
+int Grafo::indiceDistanciaMinima(bool visitados[], float distancia[]){
+    float menor = 999;
+    int indiceDoMenor = -1;
+    for(int i = 0; i < this->ordem; i++){
+        if(visitados[i] == false && distancia[i] < menor){
+            menor = distancia[i];
+            indiceDoMenor = i;
+        }
+    }
+    for(int i = 0; i < this->ordem; i++){
+        if(indiceDoMenor == -1 && visitados[i] == false)
+            indiceDoMenor = i;
+    }
+    cout << "indice menor??: " << indiceDoMenor << endl;
+    
+    return indiceDoMenor; //Se retornar -1 é pq todos ja foram visitados;
+}
+
+int Grafo::distanciaMinima(bool visitados[], float distancia[], No* noBase){
+    int indiceDaVez = noBase->getIdNo();
+    for(int i = 0; i < this->ordem; i++){ //inicializa os vetores
+        if(noBase->temAresta(i)){
+            distancia[i] = noBase->getAresta(i)->getPesoAresta();
+        } else {
+            distancia[i] = 999;
+        }
+
+        if(i == indiceDaVez){
+            visitados[i] = true;
+            distancia[i] = 0;
+        }
+    }
+    
+    for(int interacao = 1; interacao < this->ordem; interacao++){
+        indiceDaVez = indiceDistanciaMinima(visitados, distancia);
+        if(indiceDaVez == -1) //todos ja foram visitados
+            break;
+        for(int correVetor = 0; correVetor < this->ordem; correVetor++){
+            visitados[indiceDaVez] = true;
+            //Se a soma das arestas do noBase até o nó possivel de mudança for menor que a atual, muda 
+            if(visitados[correVetor] == false && existeAresta(indiceDaVez, correVetor) && distancia[indiceDaVez] + pesoAresta(indiceDaVez, correVetor) < distancia[correVetor]){
+                distancia[correVetor] = distancia[indiceDaVez] + pesoAresta(indiceDaVez, correVetor);
+            }
+        }
+    }
+
+    int menor = 0;
+    for(int i = 1; i < this->ordem; i++){
+        if(visitados[i] == false)
+            cout << "Existe um erro no código, Pois todos deveriam ser visitados!" << endl;
+        
+        if( i != noBase->getIdNo() && distancia[i] < distancia[menor])
+            menor = i;
+    }
+
+    return menor;
+}
 
 
 //MÉTODOS ADICIONADOS POR NÓS
@@ -181,6 +237,10 @@ void Grafo::incrementaGrauEntradaPorId(int idNo){
     }
 }
 
+float Grafo::pesoAresta(int idNoOrigem, int idNoDestino){
+    No* origem = getNo(idNoOrigem);
+    return origem->getAresta(idNoDestino)->getPesoAresta();
+}
 
 //metodos auxiliares
 void Grafo::printGraph(){

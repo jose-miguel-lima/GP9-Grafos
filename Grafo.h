@@ -65,7 +65,9 @@ class Grafo {
 
         bool existeAresta(int idNoOrigem, int idNoDestino);
 
-        //int distanciaMinima(bool visitados[], float distancia[]); //achamos que pode não usar
+        int indiceDistanciaMinima(bool visitados[], float distancia[]);
+        //retorna o id do nó mais perto do noBase
+        int distanciaMinima(bool visitados[], float distancia[], No* noBase);
 
         //METODOS ADICIONADOS POR NÓS
         //void incrementaNumArestas();
@@ -74,6 +76,7 @@ class Grafo {
         //void decrementaOrdem();
         void incrementaGrauEntradaPorId(int idNo);
         void insereNoPonderado(int idNo, float pesoNo);
+        float pesoAresta(int idNoOrigem, int idNodestino);
 
         //MÉTODOS FASE 1
         void topologicalSorting(); //ordenação topologica?

@@ -106,7 +106,7 @@ void No::setVisita(bool visitadoOuNao){
 }
 
 //OUTROS METODOS
-bool No::procuraAresta(int idNoDestino){
+bool No::temAresta(int idNoDestino){
     if(primeiraAresta != NULL){
         Aresta* auxAresta = primeiraAresta;
         int idNoAtual = this->getIdNo();
@@ -151,7 +151,7 @@ void No::removeTodasArestas(){
 }
 
 void No::removeAresta(int idNoDestino, bool direcionada, No* noDestino){//retorno era int
-    if(this->procuraAresta(idNoDestino)){
+    if(this->temAresta(idNoDestino)){
         Aresta* proxAresta = this->primeiraAresta->getProxAresta();
         if(this->primeiraAresta == this->getAresta(idNoDestino)){ //é a primeira aresta
             delete this->primeiraAresta;

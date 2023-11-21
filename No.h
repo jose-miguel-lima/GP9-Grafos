@@ -40,7 +40,7 @@ class No{
         void setVisita(bool visitadoOuNao);
 
         //OUTROS METODOS
-        bool procuraAresta(int idNoDestino);
+        bool temAresta(int idNoDestino);
         void insereAresta(int idNoDestino, float peso);
         void removeTodasArestas();
         void removeAresta(int idNoDestino, bool direcionada, No* noDestino);

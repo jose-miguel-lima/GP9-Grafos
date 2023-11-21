@@ -6,38 +6,27 @@ using namespace std;
 
 int main(){
 
-    Grafo* grafo = new Grafo(0, false, false, false);
-    for(int i = 1; i < 4; i++)
+    Grafo* grafo = new Grafo(0, true, true, false);
+    for(int i = 0; i <= 5; i++)
         grafo->insereNo(i);
 
-    grafo->insereAresta(1, 2, 1);
-    grafo->insereAresta(3, 1, 1);
-    cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
-    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
-
-    cout << "ordem: " << grafo->getOrdem() << endl;
-    cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
-
-    grafo->printGraph();
-
-    grafo->getPrimeiroNo()->removeAresta(1,1,grafo->getPrimeiroNo()->getProxNo());
-    cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
-    cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
-
-    cout << "ordem: " << grafo->getOrdem() << endl;
-
-    //cout << "Destrutor foi chamado!" << endl;
-    grafo->~Grafo();
-
-    //cout << "existe aresta de 1 para 2? : " << grafo->existeAresta(1, 2) << endl;
-    //cout << "existe aresta de 2 para 1? : " << grafo->existeAresta(2, 1) << endl;
+    grafo->insereAresta(1, 3, 1);
+    grafo->insereAresta(1, 4, 4);
+    grafo->insereAresta(3, 2, 2);
+    grafo->insereAresta(2, 1, 3);
+    grafo->insereAresta(5, 4, 3);
+    grafo->insereAresta(5, 1, 5);
+    grafo->insereAresta(5, 0, 10);
 
     //cout << "ordem: " << grafo->getOrdem() << endl;
     //cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
-    
-    //grafo->printGraph();
-    //cout << "TA IMPRIMINDO LIXO DE MEMÓRIA, acredito que seja por causa dos destrutores" << endl;
-    return 0;
+    grafo->printGraph();
+    int ordemGrafo = grafo->getOrdem();
+    bool visitados[ordemGrafo] = {false};
+    float distancia[ordemGrafo] = {__FLT_HAS_INFINITY__};
+    cout << "id do nó mais perto do nó 5 : " << grafo->distanciaMinima(visitados, distancia, grafo->getNo(5)) << endl;
+
+return 0;
 }
 
 /*
