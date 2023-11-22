@@ -7,6 +7,34 @@ using namespace std;
 int main(){
 
     Grafo* grafo = new Grafo(0, true, true, false);
+    grafo->insereNo(0);
+    grafo->insereNo(1);
+    grafo->insereNo(2);
+
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            if(i !=j )
+                grafo->insereAresta(i, j, 2);
+        }
+    }
+    
+    grafo->printGraph();
+    
+    grafo->preencheMatrizPesos();
+
+    cout << endl << "Matriz de pesos : " << endl;
+    for(int i = 0; i < 3; i++){
+        for(int j = 0; j < 3; j++){
+            cout << grafo->matrizPesos[i][j] << "     ";
+        }
+        cout << endl;
+    }
+    
+
+
+    /* ///TESTE DE distanciaMinima()
+    Grafo* grafo = new Grafo(0, true, true, false);
+
     for(int i = 0; i <= 5; i++)
         grafo->insereNo(i);
 
@@ -23,9 +51,9 @@ int main(){
     grafo->printGraph();
     int ordemGrafo = grafo->getOrdem();
     bool visitados[ordemGrafo] = {false};
-    float distancia[ordemGrafo] = {__FLT_HAS_INFINITY__};
+    float distancia[ordemGrafo] = {__FLT_MAX__};
     cout << "id do nó mais perto do nó 5 : " << grafo->distanciaMinima(visitados, distancia, grafo->getNo(5)) << endl;
-
+    */
 return 0;
 }
 

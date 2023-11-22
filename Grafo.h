@@ -35,6 +35,7 @@ class Grafo {
     public:
         Grafo(int ordem, bool direcionado, bool pesoArestas, bool pesoNos);
         ~Grafo();
+        float** matrizPesos;
 
         //GETTERS:
         int getOrdem();
@@ -77,6 +78,8 @@ class Grafo {
         void incrementaGrauEntradaPorId(int idNo);
         void insereNoPonderado(int idNo, float pesoNo);
         float pesoAresta(int idNoOrigem, int idNodestino);
+        void preencheMatrizPesos();
+        void desalocaMatriz();
 
         //MÉTODOS FASE 1
         void topologicalSorting(); //ordenação topologica?

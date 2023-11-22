@@ -169,7 +169,7 @@ bool Grafo::existeAresta(int idNoOrigem, int idNoDestino){
 }
 
 int Grafo::indiceDistanciaMinima(bool visitados[], float distancia[]){
-    float menor = 999;
+    float menor = __FLT_MAX__;
     int indiceDoMenor = -1;
     for(int i = 0; i < this->ordem; i++){
         if(visitados[i] == false && distancia[i] < menor){
@@ -181,7 +181,6 @@ int Grafo::indiceDistanciaMinima(bool visitados[], float distancia[]){
         if(indiceDoMenor == -1 && visitados[i] == false)
             indiceDoMenor = i;
     }
-    cout << "indice menor??: " << indiceDoMenor << endl;
     
     return indiceDoMenor; //Se retornar -1 é pq todos ja foram visitados;
 }
@@ -192,7 +191,7 @@ int Grafo::distanciaMinima(bool visitados[], float distancia[], No* noBase){
         if(noBase->temAresta(i)){
             distancia[i] = noBase->getAresta(i)->getPesoAresta();
         } else {
-            distancia[i] = 999;
+            distancia[i] = __FLT_MAX__;
         }
 
         if(i == indiceDaVez){
@@ -240,6 +239,28 @@ void Grafo::incrementaGrauEntradaPorId(int idNo){
 float Grafo::pesoAresta(int idNoOrigem, int idNoDestino){
     No* origem = getNo(idNoOrigem);
     return origem->getAresta(idNoDestino)->getPesoAresta();
+}
+
+void Grafo::preencheMatrizPesos(){
+    this->matrizPesos = new float*[this->ordem];
+
+    for(int linha = 0; linha < this->ordem; linha++){
+        this->matrizPesos[linha] = new float[this->ordem];
+        No* noLinha = getNo(linha);
+        for(int coluna = 0; coluna < this->ordem; coluna++){
+            if(linha != coluna)
+                this->matrizPesos[linha][coluna] = noLinha->getAresta(coluna)->getPesoAresta();
+            else
+                this->matrizPesos[linha][coluna] = 0;
+        }
+    }
+}
+
+void Grafo::desalocaMatriz(){
+    for(int i = 0; i < this->ordem; i++){
+        delete [] this->matrizPesos[i];
+    }
+    delete [] this->matrizPesos;
 }
 
 //metodos auxiliares

@@ -134,7 +134,7 @@ void No::insereAresta(int idNoDestino, float peso){
         this->ultimaAresta = novaAresta;   
     }
     
-    incrementaGrauSaida();
+    this->incrementaGrauSaida();
 
 }
 
