@@ -1,34 +1,34 @@
-#include <iostream>
-#include "No.h"
-#include "Grafo.h"
+// #include <iostream>
+// #include "No.h"
+// #include "Grafo.h"
 
-using namespace std;
+// using namespace std;
 
-int main(){
+// int main(){
 
-    Grafo* grafo = new Grafo(0, true, true, false);
-    grafo->insereNo(0);
-    grafo->insereNo(1);
-    grafo->insereNo(2);
+//     Grafo* grafo = new Grafo(0, true, true, false);
+//     grafo->insereNo(0);
+//     grafo->insereNo(1);
+//     grafo->insereNo(2);
 
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(i !=j )
-                grafo->insereAresta(i, j, 2);
-        }
-    }
+//     for(int i = 0; i < 3; i++){
+//         for(int j = 0; j < 3; j++){
+//             if(i !=j )
+//                 grafo->insereAresta(i, j, 2);
+//         }
+//     }
     
-    grafo->printGraph();
+//     grafo->printGraph();
     
-    grafo->preencheMatrizPesos();
+//     grafo->preencheMatrizPesos();
 
-    cout << endl << "Matriz de pesos : " << endl;
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            cout << grafo->matrizPesos[i][j] << "     ";
-        }
-        cout << endl;
-    }
+//     cout << endl << "Matriz de pesos : " << endl;
+//     for(int i = 0; i < 3; i++){
+//         for(int j = 0; j < 3; j++){
+//             cout << grafo->matrizPesos[i][j] << "     ";
+//         }
+//         cout << endl;
+//     }
     
 
 
@@ -54,10 +54,10 @@ int main(){
     float distancia[ordemGrafo] = {__FLT_MAX__};
     cout << "id do nó mais perto do nó 5 : " << grafo->distanciaMinima(visitados, distancia, grafo->getNo(5)) << endl;
     */
-return 0;
-}
+// return 0;
+// }
 
-/*
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -72,60 +72,60 @@ return 0;
 
 using namespace std;
 
-Grafo *leitura(ifstream &input_file, int directed, int weightedEdge, int weightedNode) {
+Grafo *leitura(ifstream &input_file, int direcionado, int pesoArestas, int pesoNos) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
-    int idNodeSource;
-    int idNodeTarget;
-    int order;
+    int idNoOrigem;
+    int idNoDestino;
+    int ordem;
 
     //Pegando a ordem do grafo
-    input_file >> order;
+    input_file >> ordem;
 
     //Criando objeto grafo
-    Grafo *graph = new Grafo(order, directed, weightedEdge, weightedNode);
+    Grafo *graph = new Grafo(ordem, direcionado, pesoArestas, pesoNos);
 
     //Leitura de arquivo
 
-    if (!graph->getWeightedEdge() && !graph->getWeightedNode()) {
+    if (!graph->getPonderadoArestas() && !graph->getPonderadoNos()) {
 
-        while (input_file >> idNodeSource >> idNodeTarget) {
+        while (input_file >> idNoOrigem >> idNoDestino) {
 
-            graph->insertEdge(idNodeSource, idNodeTarget, 0);
-
-        }
-
-    } else if (graph->getWeightedEdge() && !graph->getWeightedNode()) {
-
-        float edgeWeight;
-
-        while (input_file >> idNodeSource >> idNodeTarget >> edgeWeight) {
-
-            graph->insertEdge(idNodeSource, idNodeTarget, edgeWeight);
+            graph->insereAresta(idNoOrigem, idNoDestino, 0);
 
         }
 
-    } else if (graph->getWeightedNode() && !graph->getWeightedEdge()) {
+    } else if (graph->getPonderadoArestas() && !graph->getPonderadoNos()) {
 
-        float nodeSourceWeight, nodeTargetWeight;
+        float pesoAresta;
 
-        while (input_file >> idNodeSource >> nodeSourceWeight >> idNodeTarget >> nodeTargetWeight) {
+        while (input_file >> idNoOrigem >> idNoDestino >> pesoAresta) {
 
-            graph->insertEdge(idNodeSource, idNodeTarget, 0);
-            graph->getNode(idNodeSource)->setWeight(nodeSourceWeight);
-            graph->getNode(idNodeTarget)->setWeight(nodeTargetWeight);
+            graph->insereAresta(idNoOrigem, idNoDestino, pesoAresta);
 
         }
 
-    } else if (graph->getWeightedNode() && graph->getWeightedEdge()) {
+    } else if (graph->getPonderadoNos() && !graph->getPonderadoArestas()) {
 
-        float nodeSourceWeight, nodeTargetWeight, edgeWeight;
+        float pesoNoOrigem, pesoNoDestino;
 
-        while (input_file >> idNodeSource >> nodeSourceWeight >> idNodeTarget >> nodeTargetWeight) {
+        while (input_file >> idNoOrigem >> pesoNoOrigem >> idNoDestino >> pesoNoDestino) {
 
-            graph->insertEdge(idNodeSource, idNodeTarget, edgeWeight);
-            graph->getNode(idNodeSource)->setWeight(nodeSourceWeight);
-            graph->getNode(idNodeTarget)->setWeight(nodeTargetWeight);
+            graph->insereAresta(idNoOrigem, idNoDestino, 0);
+            graph->getNo(idNoOrigem)->setPesoNo(pesoNoOrigem);
+            graph->getNo(idNoDestino)->setPesoNo(pesoNoDestino);
+
+        }
+
+    } else if (graph->getPonderadoNos() && graph->getPonderadoArestas()) {
+
+        float pesoNoOrigem, pesoNoDestino, pesoAresta;
+
+        while (input_file >> idNoOrigem >> pesoNoOrigem >> idNoDestino >> pesoNoDestino) {
+
+            graph->insereAresta(idNoOrigem, idNoDestino, pesoAresta);
+            graph->getNo(idNoOrigem)->setPesoNo(pesoNoOrigem);
+            graph->getNo(idNoDestino)->setPesoNo(pesoNoDestino);
 
         }
 
@@ -134,24 +134,24 @@ Grafo *leitura(ifstream &input_file, int directed, int weightedEdge, int weighte
     return graph;
 }
 
-Grafo *leituraInstancia(ifstream &input_file, int directed, int weightedEdge, int weightedNode) {
+Grafo *leituraInstancia(ifstream &input_file, int direcionado, int pesoArestas, int pesoNos) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
-    int idNodeSource;
-    int idNodeTarget;
-    int order;
-    int numEdges;
+    int idNoOrigem;
+    int idNoDestino;
+    int ordem;
+    int numeroArestas;
 
     //Pegando a ordem do grafo
-    input_file >> order;
+    input_file >> ordem;
 
     //Criando objeto grafo
-    Grafo *graph = new Grafo(order, directed, weightedEdge, weightedNode);
+    Grafo *graph = new Grafo(ordem, direcionado, pesoArestas, pesoNos);
 
     //Leitura de arquivo
-    while (input_file >> idNodeSource >> idNodeTarget) {
+    while (input_file >> idNoOrigem >> idNoDestino) {
 
-        graph->insertEdge(idNodeSource, idNodeTarget, 0);
+        graph->insereAresta(idNoOrigem, idNoDestino, 0);
 
     }
 
@@ -189,7 +189,7 @@ void selecionar(int selecao, Grafo *graph, ofstream &output_file) {
             int id;
             cout << "Digite o ID do vertice para seu fecho transitivo direto: ";
             cin >> id;
-            graph->imprimirFechoTransitivoDireto(output_file, id);
+            //graph->imprimirFechoTransitivoDireto(output_file, id);
             break;
         }
             //Fecho transitivo indireto de um vértice;
@@ -197,7 +197,7 @@ void selecionar(int selecao, Grafo *graph, ofstream &output_file) {
             int id;
             cout << "Digite o ID do vertice para seu fecho transitivo indireto: ";
             cin >> id;
-            graph->imprimirFechoTransitivoIndireto(output_file, id);
+            //graph->imprimirFechoTransitivoIndireto(output_file, id);
             break;
         }
 
@@ -206,13 +206,13 @@ void selecionar(int selecao, Grafo *graph, ofstream &output_file) {
             int id;
             cout << "Digite o ID do vertice: ";
             cin >> id;
-            cout << "Coeficiente do nó " << id << ": " << graph->localClusteringCoefficient(id) << endl;
+            //cout << "Coeficiente do nó " << id << ": " << graph->localClusteringCoefficient(id) << endl;
             break;
         }
             //Coeficiente de agrupamento médio do grafo;
         case 4: {
             cout << "Coeficiente Medio de agrupamento do grafo";
-            cout << " = " << graph->averageClusteringCoefficient() << endl;
+            //cout << " = " << graph->averageClusteringCoefficient() << endl;
             break;
         }
             // Djkstra
@@ -223,8 +223,8 @@ void selecionar(int selecao, Grafo *graph, ofstream &output_file) {
             cin >> id1;
             cout << "Digite o vértcie final: ";
             cin >> id2;
-            float distancia = graph->dijkstra(id1, id2);
-            cout << "A distancia entre " << id1 << " e " << id2 << " é de: " << distancia << endl;
+            //float distancia = graph->dijkstra(id1, id2);
+            cout << "A distancia entre " << id1 << " e " << id2 << " é de: " << endl;
             break;
         }
 
@@ -235,18 +235,18 @@ void selecionar(int selecao, Grafo *graph, ofstream &output_file) {
             cin >> id_one;
             cout << "Digite o id do vertice de destino: ";
             cin >> id_two;
-            graph->minimalPathByFloyd(id_one, id_two);
+            //graph->minimalPathByFloyd(id_one, id_two);
             break;
         }
             //Árvore Geradora Mínima - Prim;
         case 7: {
             cout << "Árvore Geradora Mínima - Prim" << endl;
-            graph->minimalSpanningTreeByPrimAlgorithm(graph->getVerticeInduzido());
+            //graph->minimalSpanningTreeByPrimAlgorithm(graph->getVerticeInduzido());
             break;
         }
             //Árvore Geradora Mínima - Kruskal;
         case 8: {
-            graph->agmByKruskal(output_file, graph->getVerticeInduzido());
+            //graph->agmByKruskal(output_file, graph->getVerticeInduzido());
             break;
         }
             //Caminhamento em profundidade
@@ -255,7 +255,7 @@ void selecionar(int selecao, Grafo *graph, ofstream &output_file) {
             int id;
             cout << "Digite o vértice de inicio: ";
             cin >> id;
-            graph->depthFirstSearch(output_file, id);
+            //graph->depthFirstSearch(output_file, id);
         }
         default: {
             cout << "Exit!!!" << endl;
@@ -286,14 +286,13 @@ int mainMenu(ofstream &output_file, Grafo *graph) {
     return 0;
 }
 
-
 int main(int argc, char const *argv[]) {
 
     //Verificação se todos os parâmetros do programa foram entrados
     if (argc != 6) {
 
         cout
-                << "ERROR: Expecting: ./<program_name> <input_file> <output_file> <directed> <weighted_edge> <weighted_node> "
+                << "ERROR: Expecting: ./<program_name> <input_file> <output_file> <direcionado> <weighted_edge> <weighted_node> "
                 << endl;
         return 1;
 
@@ -322,7 +321,7 @@ int main(int argc, char const *argv[]) {
         cout << "Demorou  "
              << chrono::duration_cast<chrono::milliseconds>(end - start).count()
              << " ms para ler o arquivo de entrada." << endl;
-        // graph->printGraph();
+        graph->printGraph();
         // graph->printGraphDot(output_file);
 
     } else
@@ -330,6 +329,7 @@ int main(int argc, char const *argv[]) {
 
     mainMenu(output_file, graph);
 
+    
     //Fechando arquivo de entrada
     input_file.close();
 
@@ -338,4 +338,3 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
-*/
