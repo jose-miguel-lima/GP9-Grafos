@@ -57,7 +57,8 @@
 // return 0;
 // }
 
-
+//g++ *.cpp -o GP-Grafos    --> compilar
+//./GP-Grafos grafo_10000_8.txt testgrafo.txt 0 0 0 --> formato para rodar
 #include <iostream>
 #include <fstream>
 #include <string>
