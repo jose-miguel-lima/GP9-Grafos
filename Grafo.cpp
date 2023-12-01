@@ -185,7 +185,7 @@ int Grafo::indiceDistanciaMinima(bool visitados[], float distancia[]){
     return indiceDoMenor; //Se retornar -1 é pq todos ja foram visitados;
 }
 
-int Grafo::distanciaMinima(bool visitados[], float distancia[], No* noBase){
+int Grafo::distanciaMinimaDijkstra(bool visitados[], float distancia[], No* noBase){
     int indiceDaVez = noBase->getIdNo();
     for(int i = 0; i < this->ordem; i++){ //inicializa os vetores
         if(noBase->temAresta(i)){

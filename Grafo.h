@@ -31,11 +31,11 @@ class Grafo {
         bool ponderadoNos;
         No *primeiroNo;
         No *ultimoNo;
+        float** matrizPesos;
 
     public:
         Grafo(int ordem, bool direcionado, bool pesoArestas, bool pesoNos);
         ~Grafo();
-        float** matrizPesos;
 
         //GETTERS:
         int getOrdem();
@@ -68,7 +68,7 @@ class Grafo {
 
         int indiceDistanciaMinima(bool visitados[], float distancia[]);
         //retorna o id do nó mais perto do noBase
-        int distanciaMinima(bool visitados[], float distancia[], No* noBase);
+        int distanciaMinimaDijkstra(bool visitados[], float distancia[], No* noBase);
 
         //METODOS ADICIONADOS POR NÓS
         //void incrementaNumArestas();
@@ -145,6 +145,9 @@ class Grafo {
 
         ArestaLincadaAoNo *getLighterEdge(list<No *> t, list<No *> v);
         
+        //METODOS FASE 2: 
+        public:
+            
 };
 
 
