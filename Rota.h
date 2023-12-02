@@ -10,16 +10,19 @@ class Rota {
     private:
         list<int> nosDaRota;
         int capacidadeAtual;
+        float distanciaPercorrida;
 
     public:
         Rota();
         ~Rota();
 
         int getCapacidade();
+        float getDistanciaPercorrida();
         list<int> getNosDaRota();
 
         void diminuiCapacidade(int valor);
         void addIdNoNaRota(int idNo);
+        void addDistanciaPercorrida(float distancia);
 };
 
 #endif //ROTA_H_INCLUDED
