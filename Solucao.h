@@ -2,22 +2,22 @@
 #define SOLUCAO_H_INCLUDED
 
 #include <iostream>
-#include "Grafo.h"
+#include "Rota.h"
 #include <list>
 
 using namespace std;
 
 class Solucao {
     private:
-        
-        bool ehViavel;
-    
+        Rota rotas[7]; // de 0 à 6
+        int quantidadeNos;
     public:
         Solucao();
         ~Solucao();
 
-        bool getEhViavel();
-        void setEhViavel(bool simOuNao);
+        Rota getRota(int indiceRota); // de 0 à 6
+
+        void addIdNoNaRota(int indiceRota, int idNo);
         bool verificaViabilidade();
 
 };

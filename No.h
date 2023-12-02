@@ -18,7 +18,13 @@ class No{
         Aresta* primeiraAresta;
         Aresta* ultimaAresta;
 
+        int demanda;
+        int x;
+        int y;
+
     public:
+        No(int idNo, int x, int y, int demanda);
+        No(int idNo, int x, int y);
         No(int idNo, float pesoNo);
         No(int idNo);
         ~No();
@@ -34,10 +40,18 @@ class No{
         Aresta* getUltimaAresta();
         Aresta* getAresta(int idNoDestino);
 
+        int getDemanda();
+        int getX();
+        int getY();
+
         //SETTERS
         void setProxNo(No* no);
         void setPesoNo(float peso);
         void setVisita(bool visitadoOuNao);
+
+        void setDemanda(int demanda);
+        void setX(int x);
+        void setY(int y);
 
         //OUTROS METODOS
         bool temAresta(int idNoDestino);

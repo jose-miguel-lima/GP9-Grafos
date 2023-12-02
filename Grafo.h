@@ -2,6 +2,7 @@
 #define GRAFO_H_INCLUDED
 
 #include "No.h"
+#include "Solucao.h"
 #include <fstream>
 #include <stack>
 #include <list>

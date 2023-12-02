@@ -5,6 +5,33 @@ using namespace std;
 
 //Contrutores
 
+No::No(int idNo, int x, int y, int demanda){
+    this->idNo = idNo;
+    this->x = x;
+    this->y = y;
+    this->demanda = demanda;
+    this->pesoNo = 0;
+    this->grauEntrada = 0;
+    this->grauSaida = 0;
+    this->visitado = false;
+    this->proxNo = NULL;
+    this->primeiraAresta = NULL;
+    this->ultimaAresta = NULL;
+}
+
+No::No(int idNo, int x, int y){
+    this->idNo = idNo;
+    this->x = x;
+    this->y = y;
+    this->pesoNo = 0;
+    this->grauEntrada = 0;
+    this->grauSaida = 0;
+    this->visitado = false;
+    this->proxNo = NULL;
+    this->primeiraAresta = NULL;
+    this->ultimaAresta = NULL;
+}
+
 No::No(int idNo, float pesoNo){
     this->idNo = idNo;
     this->pesoNo = pesoNo;
@@ -92,6 +119,18 @@ Aresta* No::getAresta(int idNoDestino){
 }
 
 
+int No::getDemanda(){
+    return this->demanda;
+}
+
+int No::getX(){
+    return this->x;
+}
+
+int No::getY(){
+    return this->y;
+}
+
 //SETTERS
 void No::setProxNo(No* no){ //Tratamento de excessão? não pois só consigo fazer no 'insereNo' de Grafo
     this->proxNo = no;
@@ -103,6 +142,19 @@ void No::setPesoNo(float peso){
 
 void No::setVisita(bool visitadoOuNao){
     this->visitado = visitadoOuNao;
+}
+
+
+void No::setDemanda(int demanda){
+    this->demanda = demanda;
+}
+
+void No::setX(int x){
+    this->x = x;
+}
+
+void No::setY(int y){
+    this->y = y;
 }
 
 //OUTROS METODOS
