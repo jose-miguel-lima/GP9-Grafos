@@ -21,6 +21,6 @@ void Rota::diminuiCapacidade(int valor){
     this->capacidadeAtual -= valor;
 }
 
-void Rota::addNoNaRota(int idNo){
+void Rota::addIdNoNaRota(int idNo){//Aceita qualquer um, a verificação de demanda vai ser feita antes de chamar
     this->nosDaRota.push_back(idNo);
 }

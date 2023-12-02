@@ -2,7 +2,6 @@
 #define ROTA_H_INCLUDED
 
 #include <iostream>
-#include "Grafo.h"
 #include <list>
 
 using namespace std;
@@ -20,7 +19,7 @@ class Rota {
         list<int> getNosDaRota();
 
         void diminuiCapacidade(int valor);
-        void addNoNaRota(int idNo);
+        void addIdNoNaRota(int idNo);
 };
 
 #endif //ROTA_H_INCLUDED
