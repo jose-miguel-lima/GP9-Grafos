@@ -6,21 +6,8 @@
 #include <fstream>
 #include <stack>
 #include <list>
-#include <map>
 
 using namespace std;
-
-struct ArestaAux {
-    int idNoOrigem;
-    int idNoDestino;
-    int pesoAresta;
-};
-
-typedef struct {
-    int idNoOrigem;
-    No* n;
-    Aresta* a;
-} ArestaLincadaAoNo;
 
 
 class Grafo {
@@ -56,6 +43,8 @@ class Grafo {
 
         //OUTROS MÉTODOS:
         void insereNo(int idNo);
+        
+        void insereNoPonderado(int idNo, float pesoNo);
 
         void insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta);//VERIFICAR DIREÇÃO
 
@@ -77,74 +66,12 @@ class Grafo {
         //void incrementaOrdem();
         //void decrementaOrdem();
         void incrementaGrauEntradaPorId(int idNo);
-        void insereNoPonderado(int idNo, float pesoNo);
         float pesoAresta(int idNoOrigem, int idNodestino);
         void preencheMatrizPesos();
         void desalocaMatriz();
 
-        //MÉTODOS FASE 1
-        void topologicalSorting(); //ordenação topologica?
-
-        void breadthFirstSearch(ofstream &output_file); //primeira pesquisa em amplitude (largura)
-
-        void depthFirstSearch(ofstream &output_file, int id); //primeira pesquisa em profundidade
-
-        list<int> getFechoTransitivoDireto(list<int> &fechoDireto, int *id); //fecho transitivo direto
-        list<int> getFechoTransitivoIndireto(list<int> &fechoIndireto, int *id);//fecho transitivo indireto
-        void imprimirFechoTransitivoDireto(ofstream &output_file, int id);//fecho transitivo direto
-        void imprimirFechoTransitivoIndireto(ofstream &output_file, int id);//fecho transitivo indireto
-        void agmByKruskal(ofstream &outputFile, Grafo *grafo);
-
-        void imprimirAgmByKruskal(ofstream &outputfile, int ordem, int numero_arestas, ArestaAux arestas_finais[]);
-
-        Grafo* getVerticeInduzido(); //obter subgrafo induzido
-
-        Grafo* agmPrim();
-
-        float floydMarshall(int idSource, int idTarget);
-
-        float dijkstra(int idSource, int idTarget);
-
-        float localClusteringCoefficient(int idNode);
-
-        float averageClusteringCoefficient();
-
-        void auxDijkstra(float *dist, int *aPercorrer, int *noAnterior, int *map, int atual);
-
-        int mapeamento(int *map, int id);
-
-        //methods phase1
-        float greed();
-
-         float greedRandom();
-
-        float greedRactiveRandom();
-
         //auxiliar methods
         void printGraph();
-
-        void printGraphDot(ofstream &file);
-
-        void dfsRec(int id, list<Aresta> &arvore, list<Aresta> &retorno, int *pai, int tempo, int *tempoDescoberta, int *tempoFinal);
-
-        void minimalPathByFloyd(int id_one, int id_two);
-
-        void minimalSpanningTreeByPrimAlgorithm(Grafo *g);
-
-
-    private:
-        //Auxiliar methods
-        bool searchListAdj(int idNode, int idToFind);
-
-        int countNodeInAdjList(int idNode, int idToFind);
-
-        bool arestaNaLista(ArestaAux listEdges[], int id, int destino, int size);
-
-        void cleanVisited();
-
-        int getNumberInMap(int id, std::map<No *, int> m);
-
-        ArestaLincadaAoNo *getLighterEdge(list<No *> t, list<No *> v);
         
         //METODOS FASE 2: 
         public:
