@@ -27,6 +27,6 @@ bool Solucao::verificaViabilidade(){
         if(rotas[0].getCapacidade() >= 0 && rotas[1].getCapacidade() >= 0 && rotas[2].getCapacidade() >= 0 && rotas[3].getCapacidade() >= 0 && rotas[4].getCapacidade() >= 0 && rotas[5].getCapacidade() >= 0 && rotas[6].getCapacidade() >= 0 )
             return true;
     }
-    else 
-        return false;
+    
+    return false;
 }
