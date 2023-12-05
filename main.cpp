@@ -60,6 +60,9 @@
 //g++ *.cpp -o GP-Grafos    --> compilar
 //./GP-Grafos grafo_10000_8.txt testgrafo.txt 0 0 0 --> formato para rodar (ANTIGO)
 //./GP-Grafos A-n32-k5.vrp testgrafo.txt
+//./GP-Grafos B-n50-k7.vrp testgrafo.txt
+
+
 #include <iostream>
 #include <fstream>
 #include <string>
