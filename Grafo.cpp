@@ -57,15 +57,15 @@ No* Grafo::getUltimoNo(){
 
 
 //OUTROS MÉTODOS
-void Grafo::insereNo(int idNo){ //SERÁ QUE NÃO PRECISA DO PESO COMO PARÂMETRO ???
+void Grafo::insereNo(int idNo, int x, int y){ //SERÁ QUE NÃO PRECISA DO PESO COMO PARÂMETRO ???
     
     if(!existeNo(idNo)){
         if(primeiroNo != NULL){
-            No* novoNo = new No(idNo);
+            No* novoNo = new No(idNo, x, y);
             this->ultimoNo->setProxNo(novoNo);
             this->ultimoNo = novoNo;
         } else { //primeiroNo = NULL
-            No* novoNo = new No(idNo);
+            No* novoNo = new No(idNo, x, y);
             this->primeiroNo = novoNo;
             this->ultimoNo = novoNo;
         }
@@ -95,10 +95,11 @@ void Grafo::insereNoPonderado(int idNo, float pesoNo){
 
 void Grafo::insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta){
     if(!existeNo(idNoOrigem)){
-        this->insereNo(idNoOrigem);
+        //agora insere no tem x e y ai estava dando erro e coloquei esse 0 e 0 , na segunda parte acredito que não vamos criar nos assim
+        this->insereNo(idNoOrigem, 0, 0);
     }
     if(!existeNo(idNoDestino)){
-        this->insereNo(idNoDestino);
+        this->insereNo(idNoDestino,0 ,0);
     }
     
     No* origem = getNo(idNoOrigem);

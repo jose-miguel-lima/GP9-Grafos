@@ -42,7 +42,7 @@ class Grafo {
 
 
         //OUTROS MÉTODOS:
-        void insereNo(int idNo);
+        void insereNo(int idNo, int x, int y);
         
         void insereNoPonderado(int idNo, float pesoNo);
 
