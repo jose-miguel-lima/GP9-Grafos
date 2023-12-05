@@ -55,7 +55,7 @@ class No{
 
         //OUTROS METODOS
         bool temAresta(int idNoDestino);
-        void insereAresta(int idNoDestino, float peso);
+        void insereAresta(int idNoDestino, double peso);
         void removeTodasArestas();
         void removeAresta(int idNoDestino, bool direcionada, No* noDestino);
         void incrementaGrauSaida();

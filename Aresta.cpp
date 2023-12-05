@@ -35,11 +35,11 @@ void Aresta::setIdNoDestino(int idNoDestino){
     this->idNoDestino = idNoDestino;
 }
 
-float Aresta::getPesoAresta(){
+double Aresta::getPesoAresta(){
     return this->pesoAresta;
 }
 
-void Aresta::setPesoAresta(int valor){
+void Aresta::setPesoAresta(double valor){
     this->pesoAresta = valor;
 }
 

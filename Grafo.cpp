@@ -57,7 +57,7 @@ No* Grafo::getUltimoNo(){
 
 
 //OUTROS MÉTODOS
-void Grafo::insereNo(int idNo, int x, int y){ //SERÁ QUE NÃO PRECISA DO PESO COMO PARÂMETRO ???
+void Grafo::insereNo(int idNo, int x, int y){ //NÃO AUMENTA A ORDEM DO GRAFO DE PROPÓSITO
     
     if(!existeNo(idNo)){
         if(primeiroNo != NULL){
@@ -69,7 +69,6 @@ void Grafo::insereNo(int idNo, int x, int y){ //SERÁ QUE NÃO PRECISA DO PESO C
             this->primeiroNo = novoNo;
             this->ultimoNo = novoNo;
         }
-        this->ordem++;
     } else {
         cout << "Não foi possivel inserir nó, pois ja existe esse id de nó." << endl;
     }
@@ -87,13 +86,12 @@ void Grafo::insereNoPonderado(int idNo, float pesoNo){
             this->primeiroNo = novoNo;
             this->ultimoNo = novoNo;
         }
-        this->ordem++;
     } else {
         cout << "Não foi possivel inserir nó, pois ja existe esse id de nó." << endl;
     }
 }
 
-void Grafo::insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta){
+void Grafo::insereArestaEPeso(int idNoOrigem, int idNoDestino, float pesoAresta){
     if(!existeNo(idNoOrigem)){
         //agora insere no tem x e y ai estava dando erro e coloquei esse 0 e 0 , na segunda parte acredito que não vamos criar nos assim
         this->insereNo(idNoOrigem, 0, 0);
@@ -107,9 +105,19 @@ void Grafo::insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta){
 
     origem->insereAresta(idNoDestino, pesoAresta);
     if(!this->direcionado){ //Se não é direcionado tem aresta para ambos os lados
-        destino->insereAresta(idNoOrigem, pesoAresta);
+        destino->insereAresta( idNoOrigem, pesoAresta);
     }
     
+}
+
+void Grafo::insereArestaFase2(int idNoOrigem, int idNoDestino){
+    No* origem = getNo(idNoOrigem);
+    No* destino = getNo(idNoDestino);
+
+    origem->insereAresta(idNoDestino, this->retornaDistanciaDe(idNoOrigem, idNoDestino));
+    if(!this->direcionado){ //Se não é direcionado tem aresta para ambos os lados
+        destino->insereAresta( idNoOrigem, this->retornaDistanciaDe(idNoDestino, idNoOrigem));
+    }
 }
 
 void Grafo::removeNo(int idNo){
@@ -227,7 +235,6 @@ int Grafo::distanciaMinimaDijkstra(bool visitados[], float distancia[], No* noBa
 }
 
 
-//MÉTODOS ADICIONADOS POR NÓS
 void Grafo::incrementaGrauEntradaPorId(int idNo){
     No* noAux = this->primeiroNo;
     while(noAux != NULL){
@@ -242,19 +249,23 @@ float Grafo::pesoAresta(int idNoOrigem, int idNoDestino){
     return origem->getAresta(idNoDestino)->getPesoAresta();
 }
 
-void Grafo::preencheMatrizPesos(){
-    this->matrizPesos = new float*[this->ordem];
+void Grafo::preencheMatrizPesos(){ //começando do no 1, não do 0
+    this->matrizPesos = new double*[this->ordem];
 
-    for(int linha = 0; linha < this->ordem; linha++){
-        this->matrizPesos[linha] = new float[this->ordem];
+    for(int linha = 1; linha <= this->ordem; linha++){
+        this->matrizPesos[linha] = new double[this->ordem];
         No* noLinha = getNo(linha);
-        for(int coluna = 0; coluna < this->ordem; coluna++){
+        for(int coluna = 1; coluna <= this->ordem; coluna++){
             if(linha != coluna)
                 this->matrizPesos[linha][coluna] = noLinha->getAresta(coluna)->getPesoAresta();
             else
                 this->matrizPesos[linha][coluna] = 0;
         }
     }
+}
+
+double Grafo::getPosicaoMatriz(int pos1, int pos2){
+    return this->matrizPesos[pos1][pos2];
 }
 
 void Grafo::desalocaMatriz(){
@@ -279,4 +290,20 @@ void Grafo::printGraph(){
             noAux = noAux->getProxNo();
         }
     }
+}
+
+
+//MÉTODOS fase 2
+double Grafo::retornaDistanciaDe(int idNoOrigem, int idNoDestino){
+    No* noOrigem = getNo(idNoOrigem);
+    No* noDestino = getNo(idNoDestino);
+
+    int x1 = noOrigem->getX();
+    int y1 = noOrigem->getY();
+    int x2 = noDestino->getX();
+    int y2 = noDestino->getY();
+
+    double distancia = sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
+    
+    return distancia;
 }

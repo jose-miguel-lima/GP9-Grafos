@@ -174,7 +174,7 @@ bool No::temAresta(int idNoDestino){
     
 }
 
-void No::insereAresta(int idNoDestino, float peso){
+void No::insereAresta(int idNoDestino, double peso){
     Aresta* novaAresta = new Aresta(this->idNo, idNoDestino);
     novaAresta->setPesoAresta(peso);
     

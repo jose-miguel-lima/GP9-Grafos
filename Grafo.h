@@ -6,6 +6,7 @@
 #include <fstream>
 #include <stack>
 #include <list>
+#include <math.h>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ class Grafo {
         bool ponderadoNos;
         No *primeiroNo;
         No *ultimoNo;
-        float** matrizPesos;
+        double** matrizPesos;
 
     public:
         Grafo(int ordem, bool direcionado, bool pesoArestas, bool pesoNos);
@@ -46,7 +47,9 @@ class Grafo {
         
         void insereNoPonderado(int idNo, float pesoNo);
 
-        void insereAresta(int idNoOrigem, int idNoDestino, float pesoAresta);//VERIFICAR DIREÇÃO
+        void insereArestaEPeso(int idNoOrigem, int idNoDestino, float pesoAresta);//VERIFICAR DIREÇÃO
+
+        void insereArestaFase2(int idNoOrigem, int idNoDestino);//PARA A FASE 2
 
         void removeNo(int idNo); //remover arestas do nó
 
@@ -60,7 +63,6 @@ class Grafo {
         //retorna o id do nó mais perto do noBase
         int distanciaMinimaDijkstra(bool visitados[], float distancia[], No* noBase);
 
-        //METODOS ADICIONADOS POR NÓS
         //void incrementaNumArestas();
         //void decrementaNumArestas();
         //void incrementaOrdem();
@@ -68,13 +70,14 @@ class Grafo {
         void incrementaGrauEntradaPorId(int idNo);
         float pesoAresta(int idNoOrigem, int idNodestino);
         void preencheMatrizPesos();
+        double getPosicaoMatriz(int pos1, int pos2);
         void desalocaMatriz();
 
         //auxiliar methods
         void printGraph();
         
         //METODOS FASE 2: 
-        public:
+        double retornaDistanciaDe(int idNoOrigem, int idNoDestino);
             
 };
 

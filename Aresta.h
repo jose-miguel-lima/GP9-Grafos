@@ -9,7 +9,7 @@ class Aresta{
    private:
         int idNoOrigem;
         int idNoDestino;
-        float pesoAresta;
+        double pesoAresta;
         Aresta* proxAresta;
 
     public:
@@ -23,8 +23,8 @@ class Aresta{
         int getIdNoDestino();
         void setIdNoDestino(int idNoDestino);
 
-        float getPesoAresta();
-        void setPesoAresta(int valor);
+        double getPesoAresta();
+        void setPesoAresta(double valor);
 
         Aresta* getProxAresta();
         void setProxAresta(Aresta *proxAresta);
