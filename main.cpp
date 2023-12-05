@@ -77,24 +77,24 @@
 
 using namespace std;
 
-int main(){
-    Grafo g (2, 0, 1, 1);
+// int main(){
+//     Grafo g (2, 0, 1, 1);
 
-    g.insereNo(1, 0, 6);
-    g.insereNo(2, 5, 0);
-    g.insereArestaFase2(1, 2);
-    cout << "Peso da aresta: " << g.getNo(1)->getAresta(2)->getPesoAresta() << endl;
-    cout << "Distancia: " << g.retornaDistanciaDe(1, 2) << endl;
-    g.preencheMatrizPesos();
-    cout << "Aresta segundo a matriz: " << g.getPosicaoMatriz(1,2) << endl;
-    g.printGraph();
+//     g.insereNo(1, 0, 6);
+//     g.insereNo(2, 5, 0);
+//     g.insereArestaFase2(1, 2);
+//     cout << "Peso da aresta: " << g.getNo(1)->getAresta(2)->getPesoAresta() << endl;
+//     cout << "Distancia: " << g.retornaDistanciaDe(1, 2) << endl;
+//     g.preencheMatrizPesos();
+//     cout << "Aresta segundo a matriz: " << g.getPosicaoMatriz(1,2) << endl;
+//     g.printGraph();
 
-return 0;
-}
+// return 0;
+// }
 
 
 
-/*
+
 Grafo *leitura(ifstream &input_file) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
@@ -199,8 +199,20 @@ int main(int argc, char const *argv[]) {
         cout << "Demorou  "
              << chrono::duration_cast<chrono::milliseconds>(end - start).count()
              << " ms para ler o arquivo de entrada." << endl;
-        //AQUI ESTA O GRAFO RETORNADO - PODE FAZR QQ OPERAÇÃO
-        graph->printGraph();
+        
+        
+
+        //preencheAresta
+        for(int i = 1; i < graph->getOrdem() + 1; i++) {
+            for(int j = 1; j < graph->getOrdem() + 1; j++) {
+                if(!graph->existeAresta(i, j)) {
+                    graph->insereArestaFase2(i, j);
+                }
+            }
+        }
+        ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
+    
+
 
     } else
         cout << "Unable to open " << argv[1];
@@ -216,4 +228,3 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
-*/
