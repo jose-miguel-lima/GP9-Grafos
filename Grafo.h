@@ -78,7 +78,14 @@ class Grafo {
         
         //METODOS FASE 2: 
         double retornaDistanciaDe(int idNoOrigem, int idNoDestino);
-            
+        
+        list<int> ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNaoVisitados);
+
+        bool existeNoNaoVisitado();
+
+        list<int> nosNaoVisitados();
+
+        Solucao* guloso();
 };
 
 

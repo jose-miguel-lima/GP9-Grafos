@@ -307,3 +307,65 @@ double Grafo::retornaDistanciaDe(int idNoOrigem, int idNoDestino){
     
     return distancia;
 }
+
+list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoVisitados){
+    list<int> retorno = {};
+    No* noBase = this->getNo(idNo);
+    int idDoMenor = 10; //qualquer um
+
+    while(!listaNosNaoVisitados.empty()){
+        double menorDistancia = __DBL_MAX__;
+
+        for(auto it = listaNosNaoVisitados.begin(); it != listaNosNaoVisitados.end(); it++){
+            double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
+            if(distanciaAux < menorDistancia){
+                idDoMenor = *it;
+                menorDistancia = distanciaAux;
+            }
+        }
+        retorno.push_back(idDoMenor);
+        listaNosNaoVisitados.remove(idDoMenor);
+    }
+
+    return retorno;
+}
+
+bool Grafo::existeNoNaoVisitado(){
+    No* noAux = this->primeiroNo;
+
+    while(noAux != NULL){
+        if(!noAux->foiVisitado())
+            return true;
+        noAux = noAux->getProxNo();
+    }
+
+    return false;
+}
+
+list<int> Grafo::nosNaoVisitados(){
+    list<int> idNos = {};
+
+    No* noAux = this->getPrimeiroNo();
+    while(noAux != NULL){
+        if(!noAux->foiVisitado()){
+            int id = noAux->getIdNo();
+            idNos.push_back(id);
+        }
+        noAux = noAux->getProxNo();
+    }
+
+    return idNos;
+}
+
+Solucao* Grafo::guloso(){
+    Solucao* solucao = new Solucao();
+    for(int i = 0; i < 7; i++){ //adiciona o id 1 (depósito) em todas as rotas da solucao
+        solucao->getRota(i).addIdNoNaRota(1);
+    }
+    this->getNo(1)->setVisita(true); //add que 1 foi visitado
+
+    while(this->existeNoNaoVisitado()){//loop de preencher a solucao
+
+    }
+return solucao;
+}

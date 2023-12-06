@@ -77,24 +77,30 @@
 
 using namespace std;
 
-// int main(){
-//     Grafo g (2, 0, 1, 1);
+int main(){
+    Grafo g (2, 0, 1, 1);
 
-//     g.insereNo(1, 0, 6);
-//     g.insereNo(2, 5, 0);
-//     g.insereArestaFase2(1, 2);
-//     cout << "Peso da aresta: " << g.getNo(1)->getAresta(2)->getPesoAresta() << endl;
-//     cout << "Distancia: " << g.retornaDistanciaDe(1, 2) << endl;
-//     g.preencheMatrizPesos();
-//     cout << "Aresta segundo a matriz: " << g.getPosicaoMatriz(1,2) << endl;
-//     g.printGraph();
+    g.insereNo(1, 0, 6);
+    g.insereNo(2, 5, 0);
+    g.insereNo(3, 1, 100);
 
-// return 0;
-// }
+    g.insereArestaFase2(1, 3);
+    g.insereArestaFase2(2, 3);
+    g.insereArestaFase2(1, 2);
+    g.printGraph();
+
+    g.getNo(1)->setVisita(true);
+    list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
+    
+    for(auto it : lista)
+        cout << it << "  ";
+
+ return 0;
+}
 
 
 
-
+/*
 Grafo *leitura(ifstream &input_file) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
@@ -228,3 +234,4 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
+*/
