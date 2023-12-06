@@ -357,6 +357,7 @@ list<int> Grafo::nosNaoVisitados(){
     return idNos;
 }
 
+//vai parar quando não couber alguem em nenhuma rota ou todos os nó forem visitados
 bool Grafo::condicaoDeParada(Solucao* solucao){
     
 }
