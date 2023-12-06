@@ -90,6 +90,8 @@ class Grafo {
 
         Solucao* guloso1();
 
+        Solucao* Guloso2();
+
 };
 
 

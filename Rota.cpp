@@ -25,3 +25,10 @@ void Rota::diminuiCapacidade(int valor){
 void Rota::addIdNoNaRota(int idNo){//Aceita qualquer um, a verificação de demanda vai ser feita antes de chamar
     this->nosDaRota.push_back(idNo);
 }
+
+
+void Rota::PrintaRota(){
+    list<int> r = this->getNosDaRota();
+    for(auto it : r)
+        cout << it << "  ";
+}

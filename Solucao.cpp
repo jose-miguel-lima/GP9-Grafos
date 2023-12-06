@@ -38,3 +38,11 @@ bool Solucao::verificaViabilidade(){
     
     return false;
 }
+
+
+void Solucao::PrintaSolucao(){
+    for(int i = 0; i < 7; i++){
+        cout << "Rota " << i << ":" << endl;
+        this->getRota(i).PrintaRota();
+    }
+}

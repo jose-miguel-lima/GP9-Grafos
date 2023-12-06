@@ -85,10 +85,14 @@ int main(){
     g.insereNo(1, 0, 6);
     g.insereNo(2, 5, 0);
     g.insereNo(3, 1, 100);
+    g.insereNo(4, 0, 30);
 
     g.insereArestaFase2(1, 3);
     g.insereArestaFase2(2, 3);
     g.insereArestaFase2(1, 2);
+    g.insereArestaFase2(1, 4);
+    g.insereArestaFase2(2, 4);
+    g.insereArestaFase2(3, 4);
     g.printGraph();
 
     g.getNo(1)->setVisita(true);
@@ -97,6 +101,7 @@ int main(){
     for(auto it : lista)
         cout << it << "  ";
 
+    g.Guloso2()->PrintaSolucao();
  return 0;
 }
 
