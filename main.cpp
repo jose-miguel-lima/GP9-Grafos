@@ -66,6 +66,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <random>
 #include <math.h>
 #include <utility> //armazena uma dupla de dados ou objetos (first, second) : https://terminalroot.com.br/2021/08/cpp-pair-e-tuple.html
 #include <tuple>  //parecido com o de cima, mas guarda mais de 2 elementos,para acessar:get<x>("variavel") : https://terminalroot.com.br/2021/08/cpp-pair-e-tuple.html
@@ -76,6 +77,7 @@
 #include "No.h"
 
 using namespace std;
+
 
 int main(){
     Grafo g (2, 0, 1, 1);

@@ -357,15 +357,33 @@ list<int> Grafo::nosNaoVisitados(){
     return idNos;
 }
 
-Solucao* Grafo::guloso(){
+Solucao* Grafo::guloso1(){
     Solucao* solucao = new Solucao();
-    for(int i = 0; i < 7; i++){ //adiciona o id 1 (depósito) em todas as rotas da solucao
+    for(int i = 0; i < 7; i++){ //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao
         solucao->getRota(i).addIdNoNaRota(1);
+        int numAleatorio = geraNumeroAleatorio(2, 48);
+        while(getNo(numAleatorio)->foiVisitado()){ //Só sai se ainda não foi visitado
+            numAleatorio = geraNumeroAleatorio(2, 48);
+        }
+
+        solucao->getRota(i).addIdNoNaRota(numAleatorio);
+        getNo(numAleatorio)->setVisita(true);
+        solucao->addDistanciaPercorrida(this->retornaDistanciaDe(1, numAleatorio));
     }
     this->getNo(1)->setVisita(true); //add que 1 foi visitado
+
 
     while(this->existeNoNaoVisitado()){//loop de preencher a solucao
 
     }
+    
 return solucao;
+}
+
+
+int Grafo::geraNumeroAleatorio(int min, int max) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> distribuicao(min, max);
+    return distribuicao(gen);
 }

@@ -3,6 +3,7 @@
 
 #include "No.h"
 #include "Solucao.h"
+#include <random>
 #include <fstream>
 #include <stack>
 #include <list>
@@ -84,8 +85,11 @@ class Grafo {
         bool existeNoNaoVisitado();
 
         list<int> nosNaoVisitados();
+        
+        int geraNumeroAleatorio(int min, int max);
 
-        Solucao* guloso();
+        Solucao* guloso1();
+
 };
 
 

@@ -14,12 +14,20 @@ Rota Solucao::getRota(int indiceRota){
     return this->rotas[indiceRota];
 }
 
+double Solucao::getDistanciaPercorrida(){
+    return this->distanciaPercorrida;
+}
+
 //SETTERS
 
 void Solucao::addIdNoNaRota(int indiceRota, int idNo){
 //aceita tudo, deve-se verificar antes de chamar e funcao e atualizar a capacidade da rota na Grafo.cpp
     this->rotas[indiceRota].addIdNoNaRota(idNo);
     this->quantidadeNos++;
+}
+
+void Solucao::addDistanciaPercorrida(double distancia){
+    this->distanciaPercorrida += distancia;
 }
 
 bool Solucao::verificaViabilidade(){
