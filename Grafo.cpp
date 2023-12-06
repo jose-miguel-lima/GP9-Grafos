@@ -313,14 +313,16 @@ list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoV
     No* noBase = this->getNo(idNo);
     int idDoMenor = 10; //qualquer um
 
-    while(!listaNosNaoVisitados.empty()){
+    while(listaNosNaoVisitados.size() != 1){
         double menorDistancia = __DBL_MAX__;
 
         for(auto it = listaNosNaoVisitados.begin(); it != listaNosNaoVisitados.end(); it++){
-            double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
-            if(distanciaAux < menorDistancia){
-                idDoMenor = *it;
-                menorDistancia = distanciaAux;
+            if(*it != idNo){
+                double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
+                if(distanciaAux < menorDistancia){
+                    idDoMenor = *it;
+                    menorDistancia = distanciaAux;
+                }
             }
         }
         retorno.push_back(idDoMenor);
@@ -358,16 +360,27 @@ list<int> Grafo::nosNaoVisitados(){
 }
 
 //vai parar quando não couber alguem em nenhuma rota ou todos os nó forem visitados
-/*bool Grafo::condicaoDeParada(Solucao* solucao){
+bool Grafo::condicaoDeParada(Solucao* solucao){
     if(existeNoNaoVisitado()){
-        No* primeiroNoNaoVisitado = getNo(nosNaoVisitados().front())->getPesoNo();
-        double peso
-        //verifica se cabe em alguma rota:
-        if( primeiroNoNaoVisitado->getPesoNo().....)
-
+        //Se não cabe em nenhuma rota, return false:
+        int demandaPrimeiroNo = getNo(nosNaoVisitados().front())->getPesoNo();
+        if(demandaPrimeiroNo > solucao->getRota(0).getCapacidade())
+            if(demandaPrimeiroNo > solucao->getRota(1).getCapacidade())
+                if(demandaPrimeiroNo > solucao->getRota(2).getCapacidade())
+                    if(demandaPrimeiroNo > solucao->getRota(3).getCapacidade())
+                        if(demandaPrimeiroNo > solucao->getRota(4).getCapacidade())
+                            if(demandaPrimeiroNo > solucao->getRota(5).getCapacidade())
+                                if(demandaPrimeiroNo > solucao->getRota(6).getCapacidade())
+                                    return false;
+             
     }
+    else {  //se todos foram visitados
+        return false;
+    }
+    //não foram todos visitados, mas o primeiro nó cabe em alguma rota
+    return true;
 }
-*/
+
 
 Solucao* Grafo::guloso1(){
     Solucao* solucao = new Solucao();
@@ -392,7 +405,7 @@ Solucao* Grafo::guloso1(){
 
     list<int> listaCandidatos = {};
     //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
-    while(this->existeNoNaoVisitado()){
+    while(condicaoDeParada(solucao)){
         for(int i = 0; i < 7; i++){
             int idUltimoNoDaRota = solucao->getRota(i).getNosDaRota().back();
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());

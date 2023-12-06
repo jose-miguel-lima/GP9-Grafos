@@ -98,11 +98,11 @@ int main(){
 
 
 
-     //list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
+    // list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
     
-    //for(auto it : lista)
-    //     cout << it << "  ";
-    //cout << endl;
+    // for(auto it : lista)
+    //      cout << it << "  ";
+    // cout << endl;
 
     //g.guloso1()->PrintaSolucao();
   return 0;
@@ -221,13 +221,14 @@ int main(int argc, char const *argv[]) {
         //preencheAresta
         for(int i = 1; i < graph->getOrdem() + 1; i++) {
             for(int j = 1; j < graph->getOrdem() + 1; j++) {
-                if(!graph->existeAresta(i, j)) {
+                if(!graph->existeAresta(i, j) && i != j) {
                     graph->insereArestaFase2(i, j);
                 }
             }
         }
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
-        graph->guloso1();
+        
+        graph->guloso1()->PrintaSolucao();
 
 
     } else
