@@ -317,6 +317,7 @@ list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoV
         double menorDistancia = __DBL_MAX__;
 
         for(auto it = listaNosNaoVisitados.begin(); it != listaNosNaoVisitados.end(); it++){
+            cout << "antes iterator" << endl;
             if(*it != idNo){
                 double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
                 if(distanciaAux < menorDistancia){
@@ -324,6 +325,7 @@ list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoV
                     menorDistancia = distanciaAux;
                 }
             }
+            cout << "depois iterator" <<endl;
         }
         retorno.push_back(idDoMenor);
         listaNosNaoVisitados.remove(idDoMenor);

@@ -79,7 +79,7 @@
 
 using namespace std;
 
-
+/*
 int main(){
      Grafo g (4, 0, 1, 1);
 
@@ -107,10 +107,10 @@ int main(){
     //g.guloso1()->PrintaSolucao();
   return 0;
 }
+*/
 
 
 
-/*
 Grafo *leitura(ifstream &input_file) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
@@ -245,4 +245,3 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
-*/
