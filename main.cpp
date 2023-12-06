@@ -61,6 +61,7 @@
 //./GP-Grafos grafo_10000_8.txt testgrafo.txt 0 0 0 --> formato para rodar (ANTIGO)
 //./GP-Grafos A-n32-k5.vrp testgrafo.txt
 //./GP-Grafos B-n50-k7.vrp testgrafo.txt
+//./GP-Grafos A-n48-k7.vrp testgrafo.txt //INSTANCIA QUE VAMOS USAR
 
 
 #include <iostream>
@@ -79,35 +80,35 @@
 using namespace std;
 
 
-int main(){
-    Grafo g (2, 0, 1, 1);
+// int main(){
+//     Grafo g (2, 0, 1, 1);
 
-    g.insereNo(1, 0, 6);
-    g.insereNo(2, 5, 0);
-    g.insereNo(3, 1, 100);
-    g.insereNo(4, 0, 30);
+//     g.insereNo(1, 0, 6);
+//     g.insereNo(2, 5, 0);
+//     g.insereNo(3, 1, 100);
+//     g.insereNo(4, 0, 30);
 
-    g.insereArestaFase2(1, 3);
-    g.insereArestaFase2(2, 3);
-    g.insereArestaFase2(1, 2);
-    g.insereArestaFase2(1, 4);
-    g.insereArestaFase2(2, 4);
-    g.insereArestaFase2(3, 4);
-    g.printGraph();
+//     g.insereArestaFase2(1, 3);
+//     g.insereArestaFase2(2, 3);
+//     g.insereArestaFase2(1, 2);
+//     g.insereArestaFase2(1, 4);
+//     g.insereArestaFase2(2, 4);
+//     g.insereArestaFase2(3, 4);
+//     g.printGraph();
 
-    g.getNo(1)->setVisita(true);
-    list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
+//     g.getNo(1)->setVisita(true);
+//     list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
     
-    for(auto it : lista)
-        cout << it << "  ";
+//     for(auto it : lista)
+//         cout << it << "  ";
 
-    g.Guloso2()->PrintaSolucao();
- return 0;
-}
+//     g.Guloso2()->PrintaSolucao();
+//  return 0;
+// }
 
 
 
-/*
+
 Grafo *leitura(ifstream &input_file) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
@@ -241,4 +242,3 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
-*/
