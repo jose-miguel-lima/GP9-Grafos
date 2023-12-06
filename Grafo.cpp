@@ -358,10 +358,16 @@ list<int> Grafo::nosNaoVisitados(){
 }
 
 //vai parar quando não couber alguem em nenhuma rota ou todos os nó forem visitados
-bool Grafo::condicaoDeParada(Solucao* solucao){
-    
-}
+/*bool Grafo::condicaoDeParada(Solucao* solucao){
+    if(existeNoNaoVisitado()){
+        No* primeiroNoNaoVisitado = getNo(nosNaoVisitados().front())->getPesoNo();
+        double peso
+        //verifica se cabe em alguma rota:
+        if( primeiroNoNaoVisitado->getPesoNo().....)
 
+    }
+}
+*/
 
 Solucao* Grafo::guloso1(){
     Solucao* solucao = new Solucao();

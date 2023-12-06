@@ -10,7 +10,7 @@ using namespace std;
 class No{
     private:
         int idNo;
-        float pesoNo;
+        int pesoNo;
         int grauEntrada;
         int grauSaida;
         bool visitado;
@@ -25,13 +25,13 @@ class No{
     public:
         No(int idNo, int x, int y, int demanda);
         No(int idNo, int x, int y);
-        No(int idNo, float pesoNo);
+        No(int idNo, int pesoNo);
         No(int idNo);
         ~No();
 
         //GETTERS
         int getIdNo();
-        float getPesoNo();
+        int getPesoNo();
         int getGrauEntrada();
         int getGrauSaida();
         bool foiVisitado();
@@ -46,7 +46,7 @@ class No{
 
         //SETTERS
         void setProxNo(No* no);
-        void setPesoNo(float peso);
+        void setPesoNo(int peso);
         void setVisita(bool visitadoOuNao);
 
         void setDemanda(int demanda);

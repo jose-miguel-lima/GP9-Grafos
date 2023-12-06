@@ -104,7 +104,7 @@ int main(){
     //     cout << it << "  ";
     //cout << endl;
 
-     g.guloso1()->PrintaSolucao();
+    //g.guloso1()->PrintaSolucao();
   return 0;
 }
 

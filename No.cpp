@@ -10,7 +10,7 @@ No::No(int idNo, int x, int y, int demanda){
     this->x = x;
     this->y = y;
     this->demanda = demanda;
-    this->pesoNo = 0;
+    this->pesoNo = demanda;
     this->grauEntrada = 0;
     this->grauSaida = 0;
     this->visitado = false;
@@ -32,7 +32,7 @@ No::No(int idNo, int x, int y){
     this->ultimaAresta = NULL;
 }
 
-No::No(int idNo, float pesoNo){
+No::No(int idNo, int pesoNo){
     this->idNo = idNo;
     this->pesoNo = pesoNo;
     this->grauEntrada = 0;
@@ -45,7 +45,7 @@ No::No(int idNo, float pesoNo){
 
 No::No(int idNo){
     this->idNo = idNo;
-    this->pesoNo = 0; //peso 1 para não ponderado
+    this->pesoNo = 0;
     this->grauEntrada = 0;
     this->grauSaida = 0;
     this->visitado = false;
@@ -74,7 +74,7 @@ int No::getIdNo(){
     return this->idNo;
 }
 
-float No::getPesoNo(){
+int No::getPesoNo(){
     return this->pesoNo;
 }
 
@@ -136,7 +136,7 @@ void No::setProxNo(No* no){ //Tratamento de excessão? não pois só consigo faz
     this->proxNo = no;
 }
 
-void No::setPesoNo(float peso){
+void No::setPesoNo(int peso){
     this->pesoNo = peso;
 }
 
@@ -147,6 +147,7 @@ void No::setVisita(bool visitadoOuNao){
 
 void No::setDemanda(int demanda){
     this->demanda = demanda;
+    this->pesoNo = demanda;
 }
 
 void No::setX(int x){
