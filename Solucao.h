@@ -24,6 +24,8 @@ class Solucao {
         void addDistanciaPercorrida(double distancia);
         bool verificaViabilidade();
 
+        void PrintaSolucao();
+
 };
 
 #endif //SOLUCAO_H_INCLUDED

@@ -21,6 +21,8 @@ class Rota {
 
         void diminuiCapacidade(int valor);
         void addIdNoNaRota(int idNo);
+
+        void PrintaRota();
 };
 
 #endif //ROTA_H_INCLUDED
