@@ -80,35 +80,37 @@
 using namespace std;
 
 
-// int main(){
-//     Grafo g (2, 0, 1, 1);
+int main(){
+     Grafo g (4, 0, 1, 1);
 
-//     g.insereNo(1, 0, 6);
-//     g.insereNo(2, 5, 0);
-//     g.insereNo(3, 1, 100);
-//     g.insereNo(4, 0, 30);
+     g.insereNo(1, 0, 6);
+     g.insereNo(2, 5, 0);
+     g.insereNo(3, 1, 100);
+     g.insereNo(4, 0, 30);
 
-//     g.insereArestaFase2(1, 3);
-//     g.insereArestaFase2(2, 3);
-//     g.insereArestaFase2(1, 2);
-//     g.insereArestaFase2(1, 4);
-//     g.insereArestaFase2(2, 4);
-//     g.insereArestaFase2(3, 4);
-//     g.printGraph();
+     g.insereArestaFase2(1, 2);
+     g.insereArestaFase2(1, 3);
+     g.insereArestaFase2(1, 4);
+     g.insereArestaFase2(2, 3);
+     g.insereArestaFase2(2, 4);
+     g.insereArestaFase2(3, 4);
+     g.printGraph();
 
-//     g.getNo(1)->setVisita(true);
-//     list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
+
+
+     //list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
     
-//     for(auto it : lista)
-//         cout << it << "  ";
+    //for(auto it : lista)
+    //     cout << it << "  ";
+    //cout << endl;
 
-//     g.Guloso2()->PrintaSolucao();
-//  return 0;
-// }
+     g.guloso1()->PrintaSolucao();
+  return 0;
+}
 
 
 
-
+/*
 Grafo *leitura(ifstream &input_file) {
 
     //Variáveis para auxiliar na criação dos nós no Grafo
@@ -225,7 +227,7 @@ int main(int argc, char const *argv[]) {
             }
         }
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
-    
+        graph->guloso1();
 
 
     } else
@@ -242,3 +244,4 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
+*/

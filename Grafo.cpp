@@ -357,24 +357,53 @@ list<int> Grafo::nosNaoVisitados(){
     return idNos;
 }
 
+bool Grafo::condicaoDeParada(Solucao* solucao){
+    
+}
+
+
 Solucao* Grafo::guloso1(){
     Solucao* solucao = new Solucao();
-    for(int i = 0; i < 7; i++){ //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao
+    //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
+    for(int i = 0; i < 7; i++){
         solucao->getRota(i).addIdNoNaRota(1);
         int numAleatorio = geraNumeroAleatorio(2, 48);
-        while(getNo(numAleatorio)->foiVisitado()){ //Só sai se ainda não foi visitado
+        //sorteia até achar um não visitado:
+        while(getNo(numAleatorio)->foiVisitado()){ 
             numAleatorio = geraNumeroAleatorio(2, 48);
         }
-
+        //adiciona aleatorio na rota i e sua visita:
         solucao->getRota(i).addIdNoNaRota(numAleatorio);
         getNo(numAleatorio)->setVisita(true);
+        //aumenta distancia percorrida e diminui capacidade da rota:
         solucao->addDistanciaPercorrida(this->retornaDistanciaDe(1, numAleatorio));
+        solucao->getRota(i).diminuiCapacidade(getNo(numAleatorio)->getPesoNo());
     }
-    this->getNo(1)->setVisita(true); //add que 1 foi visitado
+    //add que 1 foi visitado
+    this->getNo(1)->setVisita(true);
 
 
-    while(this->existeNoNaoVisitado()){//loop de preencher a solucao
+    list<int> listaCandidatos = {};
+    //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
+    while(this->existeNoNaoVisitado()){
+        for(int i = 0; i < 7; i++){
+            int idUltimoNoDaRota = solucao->getRota(i).getNosDaRota().back();
+            listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
+            int idPrimeiroCandidato = listaCandidatos.front();
+            //se o nó couber na rota, adiciona:
+            if(getNo(idPrimeiroCandidato)->getPesoNo() <= solucao->getRota(i).getCapacidade()){
+                //add id na rota e add visitado:
+                solucao->getRota(i).addIdNoNaRota(idPrimeiroCandidato);
+                getNo(idPrimeiroCandidato)->setVisita(true);
 
+                //add distanciaPercorrida e diminui capacidade da rota:
+                double pesoDistancia = getNo(idUltimoNoDaRota)->getAresta(idPrimeiroCandidato)->getPesoAresta();
+                solucao->addDistanciaPercorrida(pesoDistancia);
+                solucao->getRota(i).diminuiCapacidade(getNo(idPrimeiroCandidato)->getPesoNo());
+
+            }
+            
+        }
     }
     
 return solucao;

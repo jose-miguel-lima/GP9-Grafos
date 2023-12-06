@@ -88,6 +88,8 @@ class Grafo {
         
         int geraNumeroAleatorio(int min, int max);
 
+        bool condicaoDeParada(Solucao* solucao);
+
         Solucao* guloso1();
 
         Solucao* Guloso2();

@@ -45,7 +45,7 @@ No::No(int idNo, float pesoNo){
 
 No::No(int idNo){
     this->idNo = idNo;
-    this->pesoNo = 1; //peso 1 para não ponderado
+    this->pesoNo = 0; //peso 1 para não ponderado
     this->grauEntrada = 0;
     this->grauSaida = 0;
     this->visitado = false;
