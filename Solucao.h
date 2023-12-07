@@ -9,7 +9,7 @@ using namespace std;
 
 class Solucao {
     private:
-        Rota rotas[7]; // de 0 à 6
+        Rota* rotas[7]; // de 0 à 6
         int quantidadeNos;
         double distanciaPercorrida;
 
@@ -17,7 +17,7 @@ class Solucao {
         Solucao();
         ~Solucao();
 
-        Rota getRota(int indiceRota); // de 0 à 6
+        Rota* getRota(int indiceRota); // de 0 à 6
         double getDistanciaPercorrida();
 
         void addIdNoNaRota(int indiceRota, int idNo);

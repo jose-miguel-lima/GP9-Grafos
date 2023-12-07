@@ -5,6 +5,7 @@ using namespace std;
 
 Rota::Rota(){
     this->capacidadeAtual = 100;
+    this->nosDaRota = {};
 }
 
 Rota::~Rota(){}

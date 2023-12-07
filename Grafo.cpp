@@ -317,15 +317,14 @@ list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoV
         double menorDistancia = __DBL_MAX__;
 
         for(auto it = listaNosNaoVisitados.begin(); it != listaNosNaoVisitados.end(); it++){
-            cout << "antes iterator" << endl;
             if(*it != idNo){
+                int conteudoIterator = *it;
                 double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
                 if(distanciaAux < menorDistancia){
                     idDoMenor = *it;
                     menorDistancia = distanciaAux;
                 }
             }
-            cout << "depois iterator" <<endl;
         }
         retorno.push_back(idDoMenor);
         listaNosNaoVisitados.remove(idDoMenor);
@@ -366,13 +365,13 @@ bool Grafo::condicaoDeParada(Solucao* solucao){
     if(existeNoNaoVisitado()){
         //Se não cabe em nenhuma rota, return false:
         int demandaPrimeiroNo = getNo(nosNaoVisitados().front())->getPesoNo();
-        if(demandaPrimeiroNo > solucao->getRota(0).getCapacidade())
-            if(demandaPrimeiroNo > solucao->getRota(1).getCapacidade())
-                if(demandaPrimeiroNo > solucao->getRota(2).getCapacidade())
-                    if(demandaPrimeiroNo > solucao->getRota(3).getCapacidade())
-                        if(demandaPrimeiroNo > solucao->getRota(4).getCapacidade())
-                            if(demandaPrimeiroNo > solucao->getRota(5).getCapacidade())
-                                if(demandaPrimeiroNo > solucao->getRota(6).getCapacidade())
+        if(demandaPrimeiroNo > solucao->getRota(0)->getCapacidade())
+            if(demandaPrimeiroNo > solucao->getRota(1)->getCapacidade())
+                if(demandaPrimeiroNo > solucao->getRota(2)->getCapacidade())
+                    if(demandaPrimeiroNo > solucao->getRota(3)->getCapacidade())
+                        if(demandaPrimeiroNo > solucao->getRota(4)->getCapacidade())
+                            if(demandaPrimeiroNo > solucao->getRota(5)->getCapacidade())
+                                if(demandaPrimeiroNo > solucao->getRota(6)->getCapacidade())
                                     return false;
              
     }
@@ -388,18 +387,19 @@ Solucao* Grafo::guloso1(){
     Solucao* solucao = new Solucao();
     //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
     for(int i = 0; i < 7; i++){
-        solucao->getRota(i).addIdNoNaRota(1);
+        solucao->getRota(i)->addIdNoNaRota(1);
         int numAleatorio = geraNumeroAleatorio(2, 48);
         //sorteia até achar um não visitado:
         while(getNo(numAleatorio)->foiVisitado()){ 
             numAleatorio = geraNumeroAleatorio(2, 48);
         }
         //adiciona aleatorio na rota i e sua visita:
-        solucao->getRota(i).addIdNoNaRota(numAleatorio);
+        solucao->getRota(i)->addIdNoNaRota(numAleatorio);
+        
         getNo(numAleatorio)->setVisita(true);
         //aumenta distancia percorrida e diminui capacidade da rota:
         solucao->addDistanciaPercorrida(this->retornaDistanciaDe(1, numAleatorio));
-        solucao->getRota(i).diminuiCapacidade(getNo(numAleatorio)->getPesoNo());
+        solucao->getRota(i)->diminuiCapacidade(getNo(numAleatorio)->getPesoNo());
     }
     //add que 1 foi visitado
     this->getNo(1)->setVisita(true);
@@ -409,19 +409,20 @@ Solucao* Grafo::guloso1(){
     //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
     while(condicaoDeParada(solucao)){
         for(int i = 0; i < 7; i++){
-            int idUltimoNoDaRota = solucao->getRota(i).getNosDaRota().back();
+            int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
+            cout << "id ultimo nó da rota " << i << " : " << idUltimoNoDaRota << endl;
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
             int idPrimeiroCandidato = listaCandidatos.front();
             //se o nó couber na rota, adiciona:
-            if(getNo(idPrimeiroCandidato)->getPesoNo() <= solucao->getRota(i).getCapacidade()){
+            if(getNo(idPrimeiroCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade()){
                 //add id na rota e add visitado:
-                solucao->getRota(i).addIdNoNaRota(idPrimeiroCandidato);
+                solucao->getRota(i)->addIdNoNaRota(idPrimeiroCandidato);
                 getNo(idPrimeiroCandidato)->setVisita(true);
 
                 //add distanciaPercorrida e diminui capacidade da rota:
                 double pesoDistancia = getNo(idUltimoNoDaRota)->getAresta(idPrimeiroCandidato)->getPesoAresta();
                 solucao->addDistanciaPercorrida(pesoDistancia);
-                solucao->getRota(i).diminuiCapacidade(getNo(idPrimeiroCandidato)->getPesoNo());
+                solucao->getRota(i)->diminuiCapacidade(getNo(idPrimeiroCandidato)->getPesoNo());
 
             }
             
@@ -446,7 +447,7 @@ Solucao* Grafo::Guloso2(){
 
     // Define como ponto de partida de todas as rotas o Nó 1
     for(int i = 0; i < 7; i++){
-        solucao->getRota(i).addIdNoNaRota(1);
+        solucao->getRota(i)->addIdNoNaRota(1);
     }
 
     // Marca o primeiro nó como visitado
@@ -469,7 +470,7 @@ Solucao* Grafo::Guloso2(){
         NosDisponiveis = nosNaoVisitados();
 
         // Reordena a nova lista baseada no id do ultimo nó da rota atual
-        NosOrdenados = ordenaNosFaltantesPorDistancia(solucao->getRota(contaRotas).getNosDaRota().back(), NosDisponiveis);
+        NosOrdenados = ordenaNosFaltantesPorDistancia(solucao->getRota(contaRotas)->getNosDaRota().back(), NosDisponiveis);
 
         if(contaRotas == 7){
             // Após rotear a rota 7 volta pra 1
@@ -481,13 +482,13 @@ Solucao* Grafo::Guloso2(){
         IdProxNoRota = NosOrdenados.front();
 
         // A rota em questão vai receber o id do nó
-        solucao->getRota(contaRotas).addIdNoNaRota(IdProxNoRota);
+        solucao->getRota(contaRotas)->addIdNoNaRota(IdProxNoRota);
 
         // Marca o nó como visitado
         this->getNo(IdProxNoRota)->setVisita(true);
 
         // Diminui a capacidade da rota com base na demanda do nó obtido
-        solucao->getRota(contaRotas).diminuiCapacidade(this->getNo(IdProxNoRota)->getDemanda());
+        solucao->getRota(contaRotas)->diminuiCapacidade(this->getNo(IdProxNoRota)->getDemanda());
 
         // Remove o nó da lista 
         NosOrdenados.pop_front();
