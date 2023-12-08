@@ -428,7 +428,7 @@ Solucao* Grafo::guloso1(){
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
             int idPrimeiroCandidato = listaCandidatos.front();
             //se o nó couber na rota, adiciona:
-            if(getNo(idPrimeiroCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade()){
+            if(getNo(idPrimeiroCandidato) && (getNo(idPrimeiroCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade())){
                 //add id na rota, add visitado e aumenta quantidade de nós da solucao:
                 solucao->getRota(i)->addIdNoNaRota(idPrimeiroCandidato);
                 getNo(idPrimeiroCandidato)->setVisita(true);
@@ -512,7 +512,7 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
             int idCandidato = *iterador;
             
             //se o nó couber na rota, adiciona:
-            if(getNo(idCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade()){
+            if(getNo(idCandidato) && (getNo(idCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade())){
                 //add id na rota, add visitado e aumenta quantidade de nós da solucao:
                 solucao->getRota(i)->addIdNoNaRota(idCandidato);
                 getNo(idCandidato)->setVisita(true);
