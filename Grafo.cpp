@@ -430,7 +430,7 @@ Solucao* Grafo::guloso1(){
             
         }
     }
-    cout << "Passou pelo guloso1, vai retornar a solucao " << endl;
+    cout << "Passou pelo guloso, vai retornar a solucao " << endl;
     
 return solucao;
 }
@@ -443,60 +443,3 @@ int Grafo::geraNumeroAleatorio(int min, int max) {
     return distribuicao(gen);
 }
 
-
-
-Solucao* Grafo::Guloso2(){
-    Solucao* solucao = new Solucao();
-
-    // Define como ponto de partida de todas as rotas o Nó 1
-    for(int i = 0; i < 7; i++){
-        solucao->getRota(i)->addIdNoNaRota(1);
-    }
-
-    // Marca o primeiro nó como visitado
-    this->getNo(1)->setVisita(true);
-
-    // Cria duas listas para fazer a ordenação e controlar os nós já visitados
-    list<int> NosDisponiveis;
-    list<int> NosOrdenados;
-
-    // contaRotas para garantir um loop no roteamento da rota 0 a 6;
-    int contaRotas = 0;
-
-    // Id do primeiro nó da lista após a ordenação das distâncias
-    int IdProxNoRota;
-
-    // Enquanto existir nó que não foi visitado, faça!
-    while(!existeNoNaoVisitado()){
-
-        // Refaz a lista de não visitados
-        NosDisponiveis = nosNaoVisitados();
-
-        // Reordena a nova lista baseada no id do ultimo nó da rota atual
-        NosOrdenados = ordenaNosFaltantesPorDistancia(solucao->getRota(contaRotas)->getNosDaRota().back(), NosDisponiveis);
-
-        if(contaRotas == 7){
-            // Após rotear a rota 7 volta pra 1
-            contaRotas = 0;
-        }
-
-
-        // Recebe o primeiro id da lista ordenada
-        IdProxNoRota = NosOrdenados.front();
-
-        // A rota em questão vai receber o id do nó
-        solucao->getRota(contaRotas)->addIdNoNaRota(IdProxNoRota);
-
-        // Marca o nó como visitado
-        this->getNo(IdProxNoRota)->setVisita(true);
-
-        // Diminui a capacidade da rota com base na demanda do nó obtido
-        solucao->getRota(contaRotas)->diminuiCapacidade(this->getNo(IdProxNoRota)->getDemanda());
-
-        // Remove o nó da lista 
-        NosOrdenados.pop_front();
-        contaRotas++;
-    }
-
-    return solucao;
-}
