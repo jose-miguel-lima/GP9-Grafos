@@ -132,7 +132,6 @@ Grafo *leitura(ifstream &input_file) {
     if (input_file >> palavra1 >> palavra2 >> numero) {     
         ordem = numero;
     }
-    cout << "essa é a ordem " << ordem << endl;
    
 
     //Criando objeto grafo
@@ -155,15 +154,10 @@ Grafo *leitura(ifstream &input_file) {
     for (int i = 0; i < ordem ; i++) {
         if (input_file >> id >> coordenadaX >> coordenadaY) {  
             graph->insereNo(id, coordenadaX, coordenadaY);
-            cout << "id do no: " << id << "  coordenda X: " << coordenadaX << "  coordenada Y : " << coordenadaY << endl;
         }
     }
 
-    
-    
-    cout << "-------------------" << endl;
-
-   
+ 
 
     string palv ;
     if (input_file >> palv)  {     
@@ -174,7 +168,6 @@ Grafo *leitura(ifstream &input_file) {
 
     while (input_file >> id >> demanda) {     
             graph->getNo(id)->setPesoNo(demanda);
-            cout << "id do no: " << id << " peso do no: " << demanda << endl;
     }
 
     return graph;
@@ -209,12 +202,12 @@ int main(int argc, char const *argv[]) {
 
     Grafo *graph;
     if (input_file.is_open()) {
-        auto start = chrono::steady_clock::now();
+       // auto start = chrono::steady_clock::now();
         graph = leitura(input_file);
-        auto end = chrono::steady_clock::now();
-        cout << "Demorou  "
-             << chrono::duration_cast<chrono::milliseconds>(end - start).count()
-             << " ms para ler o arquivo de entrada." << endl;
+       // auto end = chrono::steady_clock::now();
+        // cout << "Demorou  "
+        //      << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+        //      << " ms para ler o arquivo de entrada." << endl;
         
         
 
@@ -227,9 +220,15 @@ int main(int argc, char const *argv[]) {
             }
         }
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
-        
-        //graph->guloso1()->PrintaSolucao();
-        graph->gulosoRandomizado(0.05)->PrintaSolucao();
+        auto start = chrono::steady_clock::now();
+
+        graph->guloso1()->PrintaSolucao();
+        //graph->gulosoRandomizado(0.05)->PrintaSolucao();
+
+        auto end = chrono::steady_clock::now();
+        cout << "Demorou  "
+             << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+             << " ms para rodar o algoritmo." << endl;
 
 
     } else
