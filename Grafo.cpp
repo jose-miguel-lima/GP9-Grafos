@@ -308,30 +308,6 @@ double Grafo::retornaDistanciaDe(int idNoOrigem, int idNoDestino){
     return distancia;
 }
 
-list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoVisitados){
-    list<int> retorno = {};
-    No* noBase = this->getNo(idNo);
-    int idDoMenor = 10; //qualquer um
-
-    while(listaNosNaoVisitados.size() != 1){
-        double menorDistancia = __DBL_MAX__;
-
-        for(auto it = listaNosNaoVisitados.begin(); it != listaNosNaoVisitados.end(); it++){
-            if(*it != idNo){
-                int conteudoIterator = *it;
-                double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
-                if(distanciaAux < menorDistancia){
-                    idDoMenor = *it;
-                    menorDistancia = distanciaAux;
-                }
-            }
-        }
-        retorno.push_back(idDoMenor);
-        listaNosNaoVisitados.remove(idDoMenor);
-    }
-
-    return retorno;
-}
 
 bool Grafo::existeNoNaoVisitado(){
     No* noAux = this->primeiroNo;
@@ -359,6 +335,32 @@ list<int> Grafo::nosNaoVisitados(){
 
     return idNos;
 }
+
+list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoVisitados){
+    list<int> retorno = {};
+    No* noBase = this->getNo(idNo);
+    int idDoMenor = 10; //qualquer um
+
+    while(!listaNosNaoVisitados.empty()){
+        double menorDistancia = __DBL_MAX__;
+
+        for(auto it = listaNosNaoVisitados.begin(); it != listaNosNaoVisitados.end(); it++){
+            if(*it != idNo){
+                int conteudoIterator = *it;
+                double distanciaAux = noBase->getAresta(*it)->getPesoAresta();
+                if(distanciaAux < menorDistancia){
+                    idDoMenor = *it;
+                    menorDistancia = distanciaAux;
+                }
+            }
+        }
+        retorno.push_back(idDoMenor);
+        listaNosNaoVisitados.remove(idDoMenor);
+    }
+
+    return retorno;
+}
+
 
 //vai parar quando não couber alguem em nenhuma rota ou todos os nó forem visitados
 bool Grafo::condicaoDeParada(Solucao* solucao){
