@@ -92,7 +92,9 @@ class Grafo {
 
         Solucao* guloso1();
 
-        Solucao* gulosoRandomizado(float alfa, int numInteracoes);
+        int indiceCandidatoRandomizado(double alfa, list<int> listaCandidatos);
+
+        Solucao* gulosoRandomizado(double alfa); //add número interações?
 
 };
 

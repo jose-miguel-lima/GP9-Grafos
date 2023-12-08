@@ -228,7 +228,8 @@ int main(int argc, char const *argv[]) {
         }
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
         
-        graph->guloso1()->PrintaSolucao();
+        //graph->guloso1()->PrintaSolucao();
+        graph->gulosoRandomizado(0.05)->PrintaSolucao();
 
 
     } else

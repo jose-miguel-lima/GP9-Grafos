@@ -419,8 +419,8 @@ Solucao* Grafo::guloso1(){
     solucao->incrementaQtdNos();
 
 
-    list<int> listaCandidatos = {};
     //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
+    list<int> listaCandidatos = {};
     while(condicaoDeParada(solucao)){
         for(int i = 0; i < 7; i++){
             int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
@@ -458,9 +458,89 @@ return solucao;
 }
 
 
-// Solucao Grafo::gulosoRandomizado(float alfa, int numInteracoes){
-//     Solucao* solucao = new Solucao();
-// }
+int Grafo::indiceCandidatoRandomizado(double alfa, list<int> listaCandidatos){
+    int tamanhoDaLista = listaCandidatos.size();
+    //Arredonda para o inteiro mais próximo:
+    int tamanhoDaListaDiminuido = round(tamanhoDaLista * alfa) + 1;
+
+    // Gera um número aleatório entre 1 e tamanhoDaListaDiminuido
+    int indiceCandidato = rand() % tamanhoDaListaDiminuido + 1;
+    
+    return indiceCandidato;
+}
+
+
+Solucao* Grafo::gulosoRandomizado(double alfa){
+    //inicializando semente geradora:
+    srand(static_cast<unsigned int>(time(0)));
+
+     Solucao* solucao = new Solucao();
+     //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
+    for(int i = 0; i < 7; i++){
+        solucao->getRota(i)->addIdNoNaRota(1);
+        int numAleatorio = geraNumeroAleatorio(2, 48);
+        //sorteia até achar um não visitado:
+        while(getNo(numAleatorio)->foiVisitado()){ 
+            numAleatorio = geraNumeroAleatorio(2, 48);
+        }
+        //adiciona aleatorio na rota i e sua visita:
+        solucao->getRota(i)->addIdNoNaRota(numAleatorio);
+        
+        getNo(numAleatorio)->setVisita(true);
+        //aumenta distancia percorrida, diminui capacidade da rota e aumenta quantidade de nós na solucao:
+        solucao->addDistanciaPercorrida(this->retornaDistanciaDe(1, numAleatorio));
+        solucao->getRota(i)->diminuiCapacidade(getNo(numAleatorio)->getPesoNo());
+        solucao->incrementaQtdNos();
+    }
+    //add que 1 foi visitado
+    this->getNo(1)->setVisita(true);
+    solucao->incrementaQtdNos();
+
+
+    list<int> listaCandidatos = {};
+    //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
+    while(condicaoDeParada(solucao)){
+        for(int i = 0; i < 7; i++){
+            int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
+            //cout << "id ultimo nó da rota " << i << " : " << idUltimoNoDaRota << endl;
+            listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
+            
+            int indiceCandidato = this->indiceCandidatoRandomizado(alfa, listaCandidatos);
+
+            list<int>::iterator iterador = std::next(listaCandidatos.begin(), indiceCandidato - 1 );
+            
+            int idCandidato = *iterador;
+            
+            //se o nó couber na rota, adiciona:
+            if(getNo(idCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade()){
+                //add id na rota, add visitado e aumenta quantidade de nós da solucao:
+                solucao->getRota(i)->addIdNoNaRota(idCandidato);
+                getNo(idCandidato)->setVisita(true);
+                solucao->incrementaQtdNos();
+
+                //add distanciaPercorrida e diminui capacidade da rota:
+                double pesoDistancia = getNo(idUltimoNoDaRota)->getAresta(idCandidato)->getPesoAresta();
+                solucao->addDistanciaPercorrida(pesoDistancia);
+                solucao->getRota(i)->diminuiCapacidade(getNo(idCandidato)->getPesoNo());
+
+            }
+            
+        }
+    }
+
+    //adiciona o 1 como ultimo nó de cada rota e acrescenta a distancia.
+    for(int i = 0; i < 7; i++){
+        int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
+        double distanciaAteDeposito = getNo(idUltimoNoDaRota)->getAresta(1)->getPesoAresta();
+        solucao->addDistanciaPercorrida(distanciaAteDeposito);
+        solucao->getRota(i)->addIdNoNaRota(1);
+    }
+
+    cout << endl << "A solucao é viável? (1 == sim  / 0 == não) : " << solucao->verificaViabilidade() << endl;
+    cout << "Distancia total percorrida : " << solucao->getDistanciaPercorrida() << endl;
+
+    return solucao;
+}
 
 
 
