@@ -412,7 +412,7 @@ Solucao* Grafo::guloso1(){
     while(condicaoDeParada(solucao)){
         for(int i = 0; i < 7; i++){
             int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
-            cout << "id ultimo nó da rota " << i << " : " << idUltimoNoDaRota << endl;
+            //cout << "id ultimo nó da rota " << i << " : " << idUltimoNoDaRota << endl;
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
             int idPrimeiroCandidato = listaCandidatos.front();
             //se o nó couber na rota, adiciona:
@@ -430,6 +430,7 @@ Solucao* Grafo::guloso1(){
             
         }
     }
+    cout << "Passou pelo guloso1, vai retornar a solucao " << endl;
     
 return solucao;
 }
