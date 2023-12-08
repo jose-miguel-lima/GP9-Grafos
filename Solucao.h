@@ -25,6 +25,7 @@ class Solucao {
         bool verificaViabilidade();
 
         void PrintaSolucao();
+        void incrementaQtdNos();
 
 };
 

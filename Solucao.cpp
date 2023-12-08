@@ -38,7 +38,8 @@ void Solucao::addDistanciaPercorrida(double distancia){
 }
 
 bool Solucao::verificaViabilidade(){
-    if(this->quantidadeNos == 61){ //(47 + 14)pois são 47 nós sem o deposito e tem 7 rotas, em cada rota tem 2 depositos (7 * 2 == 14)
+    if(this->quantidadeNos == 48){
+        //se as capacidades não estão negativas, retorna viável == true
         if(rotas[0]->getCapacidade() >= 0 && rotas[1]->getCapacidade() >= 0 && rotas[2]->getCapacidade() >= 0 && rotas[3]->getCapacidade() >= 0 && rotas[4]->getCapacidade() >= 0 && rotas[5]->getCapacidade() >= 0 && rotas[6]->getCapacidade() >= 0 )
             return true;
     }
@@ -53,4 +54,8 @@ void Solucao::PrintaSolucao(){
         this->getRota(i)->PrintaRota();
     }
     cout << endl;
+}
+
+void Solucao::incrementaQtdNos(){
+    this->quantidadeNos++;
 }
