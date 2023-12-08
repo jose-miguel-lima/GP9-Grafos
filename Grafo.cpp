@@ -444,10 +444,23 @@ Solucao* Grafo::guloso1(){
         }
     }
 
+    //adiciona o 1 como ultimo nó de cada rota e acrescenta a distancia.
+    for(int i = 0; i < 7; i++){
+        int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
+        double distanciaAteDeposito = getNo(idUltimoNoDaRota)->getAresta(1)->getPesoAresta();
+        solucao->addDistanciaPercorrida(distanciaAteDeposito);
+        solucao->getRota(i)->addIdNoNaRota(1);
+    }
+
     cout << endl << "A solucao é viável? (1 == sim  / 0 == não) : " << solucao->verificaViabilidade() << endl;
-    
+    cout << "Distancia total percorrida : " << solucao->getDistanciaPercorrida() << endl;
 return solucao;
 }
+
+
+// Solucao Grafo::gulosoRandomizado(float alfa, int numInteracoes){
+//     Solucao* solucao = new Solucao();
+// }
 
 
 

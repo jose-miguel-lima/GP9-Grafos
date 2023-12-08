@@ -92,7 +92,7 @@ class Grafo {
 
         Solucao* guloso1();
 
-        Solucao* Guloso2();
+        Solucao* gulosoRandomizado(float alfa, int numInteracoes);
 
 };
 
