@@ -513,16 +513,18 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
             
             //se o nó couber na rota, adiciona:
             if(getNo(idCandidato) && (getNo(idCandidato)->getPesoNo() <= solucao->getRota(i)->getCapacidade())){
-                //add id na rota, add visitado e aumenta quantidade de nós da solucao:
-                solucao->getRota(i)->addIdNoNaRota(idCandidato);
-                getNo(idCandidato)->setVisita(true);
-                solucao->incrementaQtdNos();
+                // Concerta erro aqui - cria esse if com essa validação
+                if (idUltimoNoDaRota != idCandidato) {
+                    //add id na rota, add visitado e aumenta quantidade de nós da solucao:
+                    solucao->getRota(i)->addIdNoNaRota(idCandidato);
+                    getNo(idCandidato)->setVisita(true);
+                    solucao->incrementaQtdNos();
 
-                //add distanciaPercorrida e diminui capacidade da rota:
-                double pesoDistancia = getNo(idUltimoNoDaRota)->getAresta(idCandidato)->getPesoAresta();
-                solucao->addDistanciaPercorrida(pesoDistancia);
-                solucao->getRota(i)->diminuiCapacidade(getNo(idCandidato)->getPesoNo());
-
+                    //add distanciaPercorrida e diminui capacidade da rota:
+                    double pesoDistancia = getNo(idUltimoNoDaRota)->getAresta(idCandidato)->getPesoAresta();
+                    solucao->addDistanciaPercorrida(pesoDistancia);
+                    solucao->getRota(i)->diminuiCapacidade(getNo(idCandidato)->getPesoNo());
+                }
             }
             
         }
@@ -531,9 +533,12 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
     //adiciona o 1 como ultimo nó de cada rota e acrescenta a distancia.
     for(int i = 0; i < 7; i++){
         int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
-        double distanciaAteDeposito = getNo(idUltimoNoDaRota)->getAresta(1)->getPesoAresta();
-        solucao->addDistanciaPercorrida(distanciaAteDeposito);
-        solucao->getRota(i)->addIdNoNaRota(1);
+        // Concerta erro aqui - se id do ultimo no da rota for 1 e pega aresta 1 da uma aresta q não existe
+        if(idUltimoNoDaRota != 1) {
+            double distanciaAteDeposito = getNo(idUltimoNoDaRota)->getAresta(1)->getPesoAresta();
+            solucao->addDistanciaPercorrida(distanciaAteDeposito);
+            solucao->getRota(i)->addIdNoNaRota(1);
+        }
     }
 
     cout << endl << "A solucao é viável? (1 == sim  / 0 == não) : " << solucao->verificaViabilidade() << endl;

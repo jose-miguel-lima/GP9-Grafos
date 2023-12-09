@@ -223,7 +223,7 @@ int main(int argc, char const *argv[]) {
         auto start = chrono::steady_clock::now();
 
         //graph->guloso1()->PrintaSolucao();
-        graph->gulosoRandomizado(0.05)->PrintaSolucao();
+        graph->gulosoRandomizado(0.5)->PrintaSolucao();
 
         auto end = chrono::steady_clock::now();
         cout << "Demorou  "
