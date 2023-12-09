@@ -396,6 +396,9 @@ bool Grafo::condicaoDeParada(Solucao* solucao){
 
 
 Solucao* Grafo::guloso1(){
+    //inicia contagem do tempo
+    auto start = chrono::steady_clock::now();
+
     Solucao* solucao = new Solucao();
     //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
     for(int i = 0; i < 7; i++){
@@ -452,8 +455,17 @@ Solucao* Grafo::guloso1(){
         solucao->getRota(i)->addIdNoNaRota(1);
     }
 
+    //DEMONSTRAÇÃO DO RESULTADO
+    cout << endl << "                    RESULTADO: " << endl;
     cout << endl << "A solucao é viável? (1 == sim  / 0 == não) : " << solucao->verificaViabilidade() << endl;
     cout << "Distancia total percorrida : " << solucao->getDistanciaPercorrida() << endl;
+
+    //finaliza contagem de tempo
+    auto end = chrono::steady_clock::now();
+    cout << "Demorou  "
+        << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+        << " ms para rodar o algoritmo." << endl;
+
 return solucao;
 }
 
@@ -471,6 +483,9 @@ int Grafo::indiceCandidatoRandomizado(double alfa, list<int> listaCandidatos){
 
 
 Solucao* Grafo::gulosoRandomizado(double alfa){
+    //inicia contagem de tempo
+    auto start = chrono::steady_clock::now();
+
     //inicializando semente geradora:
     srand(static_cast<unsigned int>(time(0)));
 
@@ -541,8 +556,16 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
         }
     }
 
+    //DEMONSTRAÇÃO DO RESULTADO
+    cout << endl << "                    RESULTADO: " << endl;
     cout << endl << "A solucao é viável? (1 == sim  / 0 == não) : " << solucao->verificaViabilidade() << endl;
     cout << "Distancia total percorrida : " << solucao->getDistanciaPercorrida() << endl;
+
+    //finaliza contagem de tempo
+    auto end = chrono::steady_clock::now();
+    cout << "Demorou  "
+        << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+        << " ms para rodar o algoritmo." << endl;
 
     return solucao;
 }
