@@ -1,66 +1,3 @@
-// #include <iostream>
-// #include "No.h"
-// #include "Grafo.h"
-
-// using namespace std;
-
-// int main(){
-
-//     Grafo* grafo = new Grafo(0, true, true, false);
-//     grafo->insereNo(0);
-//     grafo->insereNo(1);
-//     grafo->insereNo(2);
-
-//     for(int i = 0; i < 3; i++){
-//         for(int j = 0; j < 3; j++){
-//             if(i !=j )
-//                 grafo->insereAresta(i, j, 2);
-//         }
-//     }
-    
-//     grafo->printGraph();
-    
-//     grafo->preencheMatrizPesos();
-
-//     cout << endl << "Matriz de pesos : " << endl;
-//     for(int i = 0; i < 3; i++){
-//         for(int j = 0; j < 3; j++){
-//             cout << grafo->matrizPesos[i][j] << "     ";
-//         }
-//         cout << endl;
-//     }
-    
-
-
-    /* ///TESTE DE distanciaMinima()
-    Grafo* grafo = new Grafo(0, true, true, false);
-
-    for(int i = 0; i <= 5; i++)
-        grafo->insereNo(i);
-
-    grafo->insereAresta(1, 3, 1);
-    grafo->insereAresta(1, 4, 4);
-    grafo->insereAresta(3, 2, 2);
-    grafo->insereAresta(2, 1, 3);
-    grafo->insereAresta(5, 4, 3);
-    grafo->insereAresta(5, 1, 5);
-    grafo->insereAresta(5, 0, 10);
-
-    //cout << "ordem: " << grafo->getOrdem() << endl;
-    //cout << "id do primeiro nó: " << grafo->getPrimeiroNo()->getIdNo() << endl; //id do primeiro no
-    grafo->printGraph();
-    int ordemGrafo = grafo->getOrdem();
-    bool visitados[ordemGrafo] = {false};
-    float distancia[ordemGrafo] = {__FLT_MAX__};
-    cout << "id do nó mais perto do nó 5 : " << grafo->distanciaMinima(visitados, distancia, grafo->getNo(5)) << endl;
-    */
-// return 0;
-// }
-
-//g++ *.cpp -o GP-Grafos    --> compilar
-//./GP-Grafos A-n48-k7.vrp testgrafo.txt //INSTANCIA QUE VAMOS USAR
-
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -93,7 +30,7 @@ Grafo *leitura(ifstream &input_file) {
     string palavra3;
     int numero;
 
-    // Supondo que a linha tenha o formato "Palavra: 42"
+
     if (input_file >> palavra1 >> palavra2 >> numero) {     
         ordem = numero;
     }
@@ -109,9 +46,6 @@ Grafo *leitura(ifstream &input_file) {
     getline(input_file, linha);
     if (input_file >> palavra1) {     
     }
-    //cout << palavra1 << endl;
-   
-
 
     int id;
     int coordenadaX;
@@ -121,8 +55,6 @@ Grafo *leitura(ifstream &input_file) {
             graph->insereNo(id, coordenadaX, coordenadaY);
         }
     }
-
- 
 
     string palv ;
     if (input_file >> palv)  {     
@@ -167,15 +99,9 @@ int main(int argc, char const *argv[]) {
 
     Grafo *graph;
     if (input_file.is_open()) {
-       // auto start = chrono::steady_clock::now();
-        graph = leitura(input_file);
-       // auto end = chrono::steady_clock::now();
-        // cout << "Demorou  "
-        //      << chrono::duration_cast<chrono::milliseconds>(end - start).count()
-        //      << " ms para ler o arquivo de entrada." << endl;
-        
-        
 
+        graph = leitura(input_file);
+   
         //preencheAresta
         for(int i = 1; i < graph->getOrdem() + 1; i++) {
             for(int j = 1; j < graph->getOrdem() + 1; j++) {
