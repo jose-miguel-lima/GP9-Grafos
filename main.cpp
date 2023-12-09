@@ -58,9 +58,6 @@
 // }
 
 //g++ *.cpp -o GP-Grafos    --> compilar
-//./GP-Grafos grafo_10000_8.txt testgrafo.txt 0 0 0 --> formato para rodar (ANTIGO)
-//./GP-Grafos A-n32-k5.vrp testgrafo.txt
-//./GP-Grafos B-n50-k7.vrp testgrafo.txt
 //./GP-Grafos A-n48-k7.vrp testgrafo.txt //INSTANCIA QUE VAMOS USAR
 
 
@@ -78,38 +75,6 @@
 #include "No.h"
 
 using namespace std;
-
-/*
-int main(){
-     Grafo g (4, 0, 1, 1);
-
-     g.insereNo(1, 0, 6);
-     g.insereNo(2, 5, 0);
-     g.insereNo(3, 1, 100);
-     g.insereNo(4, 0, 30);
-
-     g.insereArestaFase2(1, 2);
-     g.insereArestaFase2(1, 3);
-     g.insereArestaFase2(1, 4);
-     g.insereArestaFase2(2, 3);
-     g.insereArestaFase2(2, 4);
-     g.insereArestaFase2(3, 4);
-     g.printGraph();
-
-
-
-    // list<int> lista = g.ordenaNosFaltantesPorDistancia(1, g.nosNaoVisitados());
-    
-    // for(auto it : lista)
-    //      cout << it << "  ";
-    // cout << endl;
-
-    //g.guloso1()->PrintaSolucao();
-  return 0;
-}
-*/
-
-
 
 Grafo *leitura(ifstream &input_file) {
 
@@ -222,13 +187,41 @@ int main(int argc, char const *argv[]) {
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
         auto start = chrono::steady_clock::now();
 
-        //graph->guloso1()->PrintaSolucao();
-        graph->gulosoRandomizado(0.5)->PrintaSolucao();
+        int escolha = 1;
+        int qtdExecucoes;
+        double alfa;
 
-        auto end = chrono::steady_clock::now();
-        cout << "Demorou  "
-             << chrono::duration_cast<chrono::milliseconds>(end - start).count()
-             << " ms para rodar o algoritmo." << endl;
+        cout << endl << "============== BEM VINDO AO TRABALHO DE GRAFOS DO GRUPO 9 ==============" << endl << endl;
+
+        cout << "FASE 2 " << endl;
+        cout << "                            MENU                            " << endl;
+        cout << "Escolha um algoritmo para resolver o problema de roteamento de veículo: " << endl;
+        cout << "(1) Guloso " << endl;
+        cout << "(2) Guloso Randomizado " << endl << endl;
+        cout << "Escolha : ";
+        cin >> escolha;
+            
+
+        switch (escolha)
+        {
+        case 1:
+                 graph->guloso1()->PrintaSolucao();   
+            break;
+        case 2:
+            cout << "Qual alfa gostaria de passar para o Guloso Randomizado? [0, 1] :";
+            cin >> alfa;
+                graph->gulosoRandomizado(alfa)->PrintaSolucao();
+            break;
+        default:
+            cout << "Desculpe, essa opção não existe ! " << endl;
+            break;
+        }
+
+
+        // auto end = chrono::steady_clock::now();
+        // cout << "Demorou  "
+        //      << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+        //      << " ms para rodar o algoritmo." << endl;
 
 
     } else

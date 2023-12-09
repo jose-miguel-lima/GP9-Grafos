@@ -50,7 +50,7 @@ bool Solucao::verificaViabilidade(){
 
 void Solucao::PrintaSolucao(){
     for(int i = 0; i < 7; i++){
-        cout << endl << "Rota " << i << " : ";
+        cout << endl << "Rota " << i+1 << " : ";
         this->getRota(i)->PrintaRota();
     }
     cout << endl;
