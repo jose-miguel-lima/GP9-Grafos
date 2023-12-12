@@ -9,16 +9,18 @@ using namespace std;
 
 class Solucao {
     private:
-        Rota* rotas[7]; // de 0 à 6
+        list<Rota*> rotas; 
         int quantidadeNos;
         double distanciaPercorrida;
+        int quantidadeDeRotas;
 
     public:
-        Solucao();
+        Solucao(int qtdRotas);
         ~Solucao();
 
-        Rota* getRota(int indiceRota); // de 0 à 6
+        Rota* getRota(int indiceRota); 
         double getDistanciaPercorrida();
+        int getQtdRotas();
 
         void addIdNoNaRota(int indiceRota, int idNo);
         void addDistanciaPercorrida(double distancia);

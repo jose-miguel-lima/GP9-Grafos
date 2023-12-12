@@ -372,26 +372,25 @@ list<int> Grafo::ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNosNaoV
 }
 
 
-//vai parar quando não couber alguem em nenhuma rota ou todos os nó forem visitados
+//ja modifiquei pra qualquer instancia
 bool Grafo::condicaoDeParada(Solucao* solucao){
     if(existeNoNaoVisitado()){
         //Se não cabe em nenhuma rota, return false:
         int demandaPrimeiroNo = getNo(nosNaoVisitados().front())->getPesoNo();
-        if(demandaPrimeiroNo > solucao->getRota(0)->getCapacidade())
-            if(demandaPrimeiroNo > solucao->getRota(1)->getCapacidade())
-                if(demandaPrimeiroNo > solucao->getRota(2)->getCapacidade())
-                    if(demandaPrimeiroNo > solucao->getRota(3)->getCapacidade())
-                        if(demandaPrimeiroNo > solucao->getRota(4)->getCapacidade())
-                            if(demandaPrimeiroNo > solucao->getRota(5)->getCapacidade())
-                                if(demandaPrimeiroNo > solucao->getRota(6)->getCapacidade())
-                                    return false;
+        int qtdDeRotas = solucao->getQtdRotas();
+        int i;
+        for(i = 0; i < qtdDeRotas; i++){
+            if(demandaPrimeiroNo <= solucao->getRota(i)->getCapacidade()){
+                return true;
+            }
+        }
+        if(i == qtdDeRotas)
+            return false;
              
     }
     else {  //se todos foram visitados
         return false;
     }
-    //não foram todos visitados, mas o primeiro nó cabe em alguma rota
-    return true;
 }
 
 
@@ -401,6 +400,8 @@ Solucao* Grafo::guloso1(){
 
     Solucao* solucao = new Solucao();
     //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
+    //mudar de 7 para quantidade de rotas.
+    //mudar a geração dde numero aleatorio.
     for(int i = 0; i < 7; i++){
         solucao->getRota(i)->addIdNoNaRota(1);
         int numAleatorio = geraNumeroAleatorio(2, 48);
@@ -424,10 +425,11 @@ Solucao* Grafo::guloso1(){
 
     //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
     list<int> listaCandidatos = {};
+    //já modifiquei condicaoDeParada pra qlqr instancia
     while(condicaoDeParada(solucao)){
+        //mudar de 7 para qtd de rotas
         for(int i = 0; i < 7; i++){
             int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
-            //cout << "id ultimo nó da rota " << i << " : " << idUltimoNoDaRota << endl;
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
             int idPrimeiroCandidato = listaCandidatos.front();
             //se o nó couber na rota, adiciona:
@@ -448,6 +450,8 @@ Solucao* Grafo::guloso1(){
     }
 
     //adiciona o 1 como ultimo nó de cada rota e acrescenta a distancia.
+    
+    //mudar de 7 para qtd de rotas.
     for(int i = 0; i < 7; i++){
         int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
         double distanciaAteDeposito = getNo(idUltimoNoDaRota)->getAresta(1)->getPesoAresta();
