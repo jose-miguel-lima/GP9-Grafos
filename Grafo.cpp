@@ -110,15 +110,6 @@ void Grafo::insereArestaEPeso(int idNoOrigem, int idNoDestino, float pesoAresta)
     
 }
 
-void Grafo::insereArestaFase2(int idNoOrigem, int idNoDestino){
-    No* origem = getNo(idNoOrigem);
-    No* destino = getNo(idNoDestino);
-
-    origem->insereAresta(idNoDestino, this->retornaDistanciaDe(idNoOrigem, idNoDestino));
-    if(!this->direcionado){ //Se não é direcionado tem aresta para ambos os lados
-        destino->insereAresta( idNoOrigem, this->retornaDistanciaDe(idNoDestino, idNoOrigem));
-    }
-}
 
 void Grafo::removeNo(int idNo){
     if(existeNo(idNo)){
@@ -295,6 +286,17 @@ void Grafo::printGraph(){
 
 //MÉTODOS fase 2
 
+void Grafo::insereArestaFase2(int idNoOrigem, int idNoDestino){
+    No* origem = getNo(idNoOrigem);
+    No* destino = getNo(idNoDestino);
+
+    origem->insereAresta(idNoDestino, this->retornaDistanciaDe(idNoOrigem, idNoDestino));
+    if(!this->direcionado){ //Se não é direcionado tem aresta para ambos os lados
+        destino->insereAresta( idNoOrigem, this->retornaDistanciaDe(idNoDestino, idNoOrigem));
+    }
+}
+
+
 void Grafo::setQuantidadeRotas(int qtd){
     this->qtdRotasRoteamento = qtd;
 }
@@ -311,12 +313,16 @@ double Grafo::retornaDistanciaDe(int idNoOrigem, int idNoDestino){
     No* noOrigem = getNo(idNoOrigem);
     No* noDestino = getNo(idNoDestino);
 
-    int x1 = noOrigem->getX();
-    int y1 = noOrigem->getY();
-    int x2 = noDestino->getX();
-    int y2 = noDestino->getY();
+    double x1 = noOrigem->getX();
+    double y1 = noOrigem->getY();
+    double x2 = noDestino->getX();
+    double y2 = noDestino->getY();
 
     double distancia = sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
+
+    if(distancia < 0){
+        distancia = distancia * -1;
+    }
     
     return distancia;
 }

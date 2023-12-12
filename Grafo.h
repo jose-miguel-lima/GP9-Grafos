@@ -53,7 +53,6 @@ class Grafo {
 
         void insereArestaEPeso(int idNoOrigem, int idNoDestino, float pesoAresta);//VERIFICAR DIREÇÃO
 
-        void insereArestaFase2(int idNoOrigem, int idNoDestino);//PARA A FASE 2
 
         void removeNo(int idNo); //remover arestas do nó
 
@@ -81,6 +80,8 @@ class Grafo {
         void printGraph();
         
         //METODOS FASE 2: 
+        void insereArestaFase2(int idNoOrigem, int idNoDestino);//PARA A FASE 2
+        
         void setQuantidadeRotas(int qtd);
 
         double retornaDistanciaDe(int idNoOrigem, int idNoDestino);

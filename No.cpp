@@ -5,7 +5,7 @@ using namespace std;
 
 //Contrutores
 
-No::No(int idNo, int x, int y, int demanda){
+No::No(int idNo, double x, double y, int demanda){
     this->idNo = idNo;
     this->x = x;
     this->y = y;
@@ -19,7 +19,7 @@ No::No(int idNo, int x, int y, int demanda){
     this->ultimaAresta = NULL;
 }
 
-No::No(int idNo, int x, int y){
+No::No(int idNo, double x, double y){
     this->idNo = idNo;
     this->x = x;
     this->y = y;
@@ -123,11 +123,11 @@ int No::getDemanda(){
     return this->demanda;
 }
 
-int No::getX(){
+double No::getX(){
     return this->x;
 }
 
-int No::getY(){
+double No::getY(){
     return this->y;
 }
 
@@ -150,11 +150,11 @@ void No::setDemanda(int demanda){
     this->pesoNo = demanda;
 }
 
-void No::setX(int x){
+void No::setX(double x){
     this->x = x;
 }
 
-void No::setY(int y){
+void No::setY(double y){
     this->y = y;
 }
 
