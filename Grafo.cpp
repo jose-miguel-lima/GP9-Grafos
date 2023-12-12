@@ -295,6 +295,9 @@ void Grafo::printGraph(){
 
 //MÉTODOS fase 2
 
+void Grafo::setQuantidadeRotas(int qtd){
+    this->qtdRotasRoteamento = qtd;
+}
 
 int Grafo::geraNumeroAleatorio(int min, int max) {
     std::random_device rd;
@@ -379,7 +382,7 @@ bool Grafo::condicaoDeParada(Solucao* solucao){
         int demandaPrimeiroNo = getNo(nosNaoVisitados().front())->getPesoNo();
         int qtdDeRotas = solucao->getQtdRotas();
         int i;
-        for(i = 0; i < qtdDeRotas; i++){
+        for(i = 1; i < qtdDeRotas; i++){
             if(demandaPrimeiroNo <= solucao->getRota(i)->getCapacidade()){
                 return true;
             }
@@ -388,9 +391,9 @@ bool Grafo::condicaoDeParada(Solucao* solucao){
             return false;
              
     }
-    else {  //se todos foram visitados
+    //se todos foram visitados
         return false;
-    }
+    
 }
 
 
@@ -398,16 +401,16 @@ Solucao* Grafo::guloso1(){
     //inicia contagem do tempo
     auto start = chrono::steady_clock::now();
 
-    Solucao* solucao = new Solucao();
+    Solucao* solucao = new Solucao(this->qtdRotasRoteamento, this->ordem);
     //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
     //mudar de 7 para quantidade de rotas.
-    //mudar a geração dde numero aleatorio.
-    for(int i = 0; i < 7; i++){
+    //mudar a geração de numero aleatorio.
+    for(int i = 1; i <= solucao->getQtdRotas(); i++){
         solucao->getRota(i)->addIdNoNaRota(1);
-        int numAleatorio = geraNumeroAleatorio(2, 48);
+        int numAleatorio = geraNumeroAleatorio(2, this->ordem);
         //sorteia até achar um não visitado:
         while(getNo(numAleatorio)->foiVisitado()){ 
-            numAleatorio = geraNumeroAleatorio(2, 48);
+            numAleatorio = geraNumeroAleatorio(2, this->ordem);
         }
         //adiciona aleatorio na rota i e sua visita:
         solucao->getRota(i)->addIdNoNaRota(numAleatorio);
@@ -422,13 +425,12 @@ Solucao* Grafo::guloso1(){
     this->getNo(1)->setVisita(true);
     solucao->incrementaQtdNos();
 
-
     //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
     list<int> listaCandidatos = {};
     //já modifiquei condicaoDeParada pra qlqr instancia
     while(condicaoDeParada(solucao)){
         //mudar de 7 para qtd de rotas
-        for(int i = 0; i < 7; i++){
+        for(int i = 1; i <= solucao->getQtdRotas(); i++){
             int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
             int idPrimeiroCandidato = listaCandidatos.front();
@@ -452,7 +454,7 @@ Solucao* Grafo::guloso1(){
     //adiciona o 1 como ultimo nó de cada rota e acrescenta a distancia.
     
     //mudar de 7 para qtd de rotas.
-    for(int i = 0; i < 7; i++){
+    for(int i = 1; i <= solucao->getQtdRotas(); i++){
         int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
         double distanciaAteDeposito = getNo(idUltimoNoDaRota)->getAresta(1)->getPesoAresta();
         solucao->addDistanciaPercorrida(distanciaAteDeposito);
@@ -493,14 +495,14 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
     //inicializando semente geradora:
     srand(static_cast<unsigned int>(time(0)));
 
-     Solucao* solucao = new Solucao();
+     Solucao* solucao = new Solucao(this->qtdRotasRoteamento, this->ordem);
      //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
-    for(int i = 0; i < 7; i++){
+    for(int i = 1; i <= solucao->getQtdRotas(); i++){
         solucao->getRota(i)->addIdNoNaRota(1);
-        int numAleatorio = geraNumeroAleatorio(2, 48);
+        int numAleatorio = geraNumeroAleatorio(2, this->ordem);
         //sorteia até achar um não visitado:
         while(getNo(numAleatorio)->foiVisitado()){ 
-            numAleatorio = geraNumeroAleatorio(2, 48);
+            numAleatorio = geraNumeroAleatorio(2, this->ordem);
         }
         //adiciona aleatorio na rota i e sua visita:
         solucao->getRota(i)->addIdNoNaRota(numAleatorio);
@@ -519,7 +521,7 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
     list<int> listaCandidatos = {};
     //loop de parar ou não de preencher a solucao (PODE SER QUE TENHA QUE MUDAR A CONDIÇÃO)   
     while(condicaoDeParada(solucao)){
-        for(int i = 0; i < 7; i++){
+        for(int i = 1; i <= solucao->getQtdRotas(); i++){
             int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
             //cout << "id ultimo nó da rota " << i << " : " << idUltimoNoDaRota << endl;
             listaCandidatos = ordenaNosFaltantesPorDistancia(idUltimoNoDaRota, this->nosNaoVisitados());
@@ -550,7 +552,7 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
     }
 
     //adiciona o 1 como ultimo nó de cada rota e acrescenta a distancia.
-    for(int i = 0; i < 7; i++){
+    for(int i = 1; i <= solucao->getQtdRotas(); i++){
         int idUltimoNoDaRota = solucao->getRota(i)->getNosDaRota().back();
         // Concerta erro aqui - se id do ultimo no da rota for 1 e pega aresta 1 da uma aresta q não existe
         if(idUltimoNoDaRota != 1) {

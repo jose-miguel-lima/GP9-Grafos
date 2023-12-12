@@ -111,6 +111,9 @@ int main(int argc, char const *argv[]) {
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
         //auto start = chrono::steady_clock::now();
 
+        //TESTAR QUALQUER INSTANCIA
+        graph->setQuantidadeRotas(7);
+
         int escolha = 1;
         int qtdExecucoes;
         double alfa;

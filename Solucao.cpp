@@ -3,27 +3,33 @@
 
 using namespace std;
 
-Solucao::Solucao(int qtdRotas){
+Solucao::Solucao(int qtdRotas, int qtdNos){
     this->quantidadeNos = 0;
+    this->qtdMaximaNos = qtdNos;
     this->quantidadeDeRotas = qtdRotas;
-    this->rotas(qtdRotas); //opção de add "(qtdRotas, NULL);"
-    for (int i = 0; i < qtdRotas; i++) {
-        rotas[i] = new Rota();
-    }
+
+    for(int i = 0; i < qtdRotas; i++)
+        this->rotas.push_back(new Rota());
+
+}
+
+Solucao::Solucao(){
+    this->quantidadeNos = 0;
 }
 
 Solucao::~Solucao(){}
 
 //GETTERS
 Rota* Solucao::getRota(int indiceRota){
-    int contador = 0;
+    int contador = 1;
+    Rota* rotaRetorno = NULL;
     for(auto it = this->rotas.begin(); it != this->rotas.end(); it++){
-        Rota* rotaRetorno = *it;        
-        if(contador == indiceRota)
+        if(contador == indiceRota){
+            rotaRetorno = *it;        
             break;
+        }
         contador++;
     }
-
     return rotaRetorno;
 }
 
@@ -49,10 +55,10 @@ void Solucao::addDistanciaPercorrida(double distancia){
 
 //MUDAR MUDAR MUDAR
 bool Solucao::verificaViabilidade(){  
-    if(this->quantidadeNos == 48){
+    if(this->quantidadeNos == this->qtdMaximaNos){
         //se as capacidades não estão negativas, retorna viável == true
-        if(rotas[0]->getCapacidade() >= 0 && rotas[1]->getCapacidade() >= 0 && rotas[2]->getCapacidade() >= 0 && rotas[3]->getCapacidade() >= 0 && rotas[4]->getCapacidade() >= 0 && rotas[5]->getCapacidade() >= 0 && rotas[6]->getCapacidade() >= 0 )
-            return true;
+        //if(rotas[0]->getCapacidade() >= 0 && rotas[1]->getCapacidade() >= 0 && rotas[2]->getCapacidade() >= 0 && rotas[3]->getCapacidade() >= 0 && rotas[4]->getCapacidade() >= 0 && rotas[5]->getCapacidade() >= 0 && rotas[6]->getCapacidade() >= 0 )
+        return true;
     }
     
     return false;
@@ -60,8 +66,8 @@ bool Solucao::verificaViabilidade(){
 
 
 void Solucao::PrintaSolucao(){
-    for(int i = 0; i < this->quantidadeDeRotas; i++){
-        cout << endl << "Rota " << i+1 << " : ";
+    for(int i = 1; i <= this->quantidadeDeRotas; i++){
+        cout << endl << "Rota " << i << " : ";
         this->getRota(i)->PrintaRota();
     }
     cout << endl;

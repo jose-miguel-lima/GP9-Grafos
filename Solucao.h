@@ -12,10 +12,13 @@ class Solucao {
         list<Rota*> rotas; 
         int quantidadeNos;
         double distanciaPercorrida;
-        int quantidadeDeRotas;
 
+        int quantidadeDeRotas;
+        int qtdMaximaNos;
+    
     public:
-        Solucao(int qtdRotas);
+        Solucao(int qtdRotas, int qtdNos);
+        Solucao();
         ~Solucao();
 
         Rota* getRota(int indiceRota); 

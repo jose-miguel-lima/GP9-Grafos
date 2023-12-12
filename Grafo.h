@@ -24,6 +24,8 @@ class Grafo {
         No *ultimoNo;
         double** matrizPesos;
 
+        int qtdRotasRoteamento;
+
     public:
         Grafo(int ordem, bool direcionado, bool pesoArestas, bool pesoNos);
         ~Grafo();
@@ -79,6 +81,8 @@ class Grafo {
         void printGraph();
         
         //METODOS FASE 2: 
+        void setQuantidadeRotas(int qtd);
+
         double retornaDistanciaDe(int idNoOrigem, int idNoDestino);
         
         list<int> ordenaNosFaltantesPorDistancia(int idNo, list<int> listaNaoVisitados);
