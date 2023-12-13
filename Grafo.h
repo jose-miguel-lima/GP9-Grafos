@@ -26,6 +26,8 @@ class Grafo {
 
         int qtdRotasRoteamento;
 
+        string nomeArquivo;
+
     public:
         Grafo(int ordem, bool direcionado, bool pesoArestas, bool pesoNos);
         ~Grafo();
@@ -44,6 +46,11 @@ class Grafo {
         No* getPrimeiroNo();
         
         No* getUltimoNo();
+
+        string getNomeArqv();
+
+        //SETTERS:
+        void setNomeArqv(string nome);
 
 
         //OUTROS MÉTODOS:
@@ -83,6 +90,8 @@ class Grafo {
         void insereArestaFase2(int idNoOrigem, int idNoDestino);//PARA A FASE 2
         
         void setQuantidadeRotas(int qtd);
+
+        int getQtdRotas();
 
         double retornaDistanciaDe(int idNoOrigem, int idNoDestino);
         

@@ -26,6 +26,11 @@ Grafo::~Grafo(){
     this->ultimoNo = NULL;
 }
 
+//SETTERS
+void Grafo::setNomeArqv(string nome){
+    this->nomeArquivo = nome;
+}
+
 //GETTERS
 int Grafo::getOrdem(){
     return this->ordem;
@@ -55,6 +60,13 @@ No* Grafo::getUltimoNo(){
     return this->ultimoNo;
 }
 
+string Grafo::getNomeArqv(){
+    return this->nomeArquivo;
+}
+
+int Grafo::getQtdRotas(){
+    return this->qtdRotasRoteamento;
+}
 
 //OUTROS MÉTODOS
 void Grafo::insereNo(int idNo, int x, int y){ //NÃO AUMENTA A ORDEM DO GRAFO DE PROPÓSITO

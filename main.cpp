@@ -17,28 +17,42 @@ Grafo *leitura(ifstream &input_file) {
     int idNoOrigem;
     int idNoDestino;
     int ordem;
+    string nomeArqv;
 
-    for (int i = 0; i < 3; ++i) {
-        string linha;
-        getline(input_file, linha);
-    }
-    //Pegando a ordem do grafo
     string palavra1;
     string palavra2;
     string palavra3;
+
+    if (input_file >> palavra1 >> palavra2 >> palavra3) {     
+        nomeArqv = palavra3;
+        cout << "nome arqv: " << nomeArqv << endl;
+    }
+
+    string linha;
+    getline(input_file, linha);
+    getline(input_file, linha);
+    getline(input_file, linha);
+    
+
+    
+    
     int numero;
 
 
     if (input_file >> palavra1 >> palavra2 >> numero) {     
         ordem = numero;
+        cout << "ordem: " << numero << endl;
     }
    
-
+   
     //Criando objeto grafo
     Grafo *graph = new Grafo(ordem, 0, 1, 1);
-
+    graph->setNomeArqv(nomeArqv);
+    cout << "-----------" << endl;
     //pula mais 3 linhas
-    string linha;
+    if(nomeArqv == "Golden_1" || nomeArqv == "Golden_17") {
+        getline(input_file, linha);
+    }
     getline(input_file, linha);
     getline(input_file, linha);
     getline(input_file, linha);
@@ -46,11 +60,12 @@ Grafo *leitura(ifstream &input_file) {
     }
 
     int id;
-    int coordenadaX;
-    int coordenadaY;
+    double coordenadaX;
+    double coordenadaY;
     for (int i = 0; i < ordem ; i++) {
         if (input_file >> id >> coordenadaX >> coordenadaY) {  
             graph->insereNo(id, coordenadaX, coordenadaY);
+            cout << "id: " << id << " coordenadaX: " << coordenadaX << " coordenadaY: " << coordenadaY << endl;
         }
     }
 
@@ -63,6 +78,7 @@ Grafo *leitura(ifstream &input_file) {
 
     while (input_file >> id >> demanda) {     
             graph->getNo(id)->setPesoNo(demanda);
+            cout << "id: " << id << " demanda: " << demanda << endl;
     }
 
     return graph;
@@ -109,11 +125,43 @@ int main(int argc, char const *argv[]) {
             }
         }
         ///////////// PODE CHAMAR OS MÉTODOS AQUI DE GRAFO
-        //auto start = chrono::steady_clock::now();
+        auto start = chrono::steady_clock::now();
 
         //TESTAR QUALQUER INSTANCIA
-        graph->setQuantidadeRotas(7);
+        //capacidade
+        cout << "nomearqv : " << graph->getNomeArqv() << endl;
+        if(graph->getNomeArqv() == "A-n34-k5") {
+            graph->setQuantidadeRotas(5);
+        }
+         if(graph->getNomeArqv() == "A-n48-k7") {
+            graph->setQuantidadeRotas(7);
+        }
+         if(graph->getNomeArqv() == "B-n34-k5") {
+            graph->setQuantidadeRotas(5);
+        }
+         if(graph->getNomeArqv() == "B-n50-k8") {
+            graph->setQuantidadeRotas(8);
+        }
+         if(graph->getNomeArqv() == "Golden_1") {
+            graph->setQuantidadeRotas(9);
+        }
+         if(graph->getNomeArqv() == "Golden_17") {
+            graph->setQuantidadeRotas(22);
+        }
+         if(graph->getNomeArqv() == "M-n101-k10") {
+            graph->setQuantidadeRotas(10);
+        }
+         if(graph->getNomeArqv() == "M-n151-k12") {
+            graph->setQuantidadeRotas(12);
+        }
+         if(graph->getNomeArqv() == "X-n101-k25") {
+            graph->setQuantidadeRotas(25);
+        }
+         if(graph->getNomeArqv() == "X-n280-k17") {
+            graph->setQuantidadeRotas(17);
+        }
 
+        cout << "Qunatidade de rotas é : " << graph->getQtdRotas() << endl;
         int escolha = 1;
         int qtdExecucoes;
         double alfa;
@@ -145,10 +193,10 @@ int main(int argc, char const *argv[]) {
         }
 
 
-        // auto end = chrono::steady_clock::now();
-        // cout << "Demorou  "
-        //      << chrono::duration_cast<chrono::milliseconds>(end - start).count()
-        //      << " ms para rodar o algoritmo." << endl;
+        auto end = chrono::steady_clock::now();
+        cout << "Demorou  "
+             << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+             << " ms para rodar o algoritmo." << endl;
 
 
     } else
