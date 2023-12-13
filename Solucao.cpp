@@ -3,13 +3,13 @@
 
 using namespace std;
 
-Solucao::Solucao(int qtdRotas, int qtdNos){
+Solucao::Solucao(int qtdRotas, int qtdNos, int capacidadeRotas){
     this->quantidadeNos = 0;
     this->qtdMaximaNos = qtdNos;
     this->quantidadeDeRotas = qtdRotas;
 
     for(int i = 0; i < qtdRotas; i++)
-        this->rotas.push_back(new Rota());
+        this->rotas.push_back(new Rota(capacidadeRotas));
 
 }
 

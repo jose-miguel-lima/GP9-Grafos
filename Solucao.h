@@ -17,7 +17,7 @@ class Solucao {
         int qtdMaximaNos;
     
     public:
-        Solucao(int qtdRotas, int qtdNos);
+        Solucao(int qtdRotas, int qtdNos, int capacidadeRotas);
         Solucao();
         ~Solucao();
 

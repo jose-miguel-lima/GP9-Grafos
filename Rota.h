@@ -12,7 +12,7 @@ class Rota {
         int capacidadeAtual;
 
     public:
-        Rota();
+        Rota(int capacidade);
         ~Rota();
 
         int getCapacidade();

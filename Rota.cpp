@@ -3,8 +3,8 @@
 
 using namespace std;
 
-Rota::Rota(){
-    this->capacidadeAtual = 100;
+Rota::Rota(int capacidade){
+    this->capacidadeAtual = capacidade;
     this->nosDaRota = {};
 }
 

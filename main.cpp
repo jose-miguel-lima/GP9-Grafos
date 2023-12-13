@@ -132,36 +132,47 @@ int main(int argc, char const *argv[]) {
         cout << "nomearqv : " << graph->getNomeArqv() << endl;
         if(graph->getNomeArqv() == "A-n34-k5") {
             graph->setQuantidadeRotas(5);
+            graph->setCapacidadeRotas(100);
         }
          if(graph->getNomeArqv() == "A-n48-k7") {
             graph->setQuantidadeRotas(7);
+            graph->setCapacidadeRotas(100);
         }
          if(graph->getNomeArqv() == "B-n34-k5") {
             graph->setQuantidadeRotas(5);
+            graph->setCapacidadeRotas(100);
         }
          if(graph->getNomeArqv() == "B-n50-k8") {
             graph->setQuantidadeRotas(8);
+            graph->setCapacidadeRotas(100);
         }
          if(graph->getNomeArqv() == "Golden_1") {
             graph->setQuantidadeRotas(9);
+            graph->setCapacidadeRotas(550);
         }
          if(graph->getNomeArqv() == "Golden_17") {
             graph->setQuantidadeRotas(22);
+            graph->setCapacidadeRotas(200);
         }
          if(graph->getNomeArqv() == "M-n101-k10") {
             graph->setQuantidadeRotas(10);
+            graph->setCapacidadeRotas(200);
         }
          if(graph->getNomeArqv() == "M-n151-k12") {
             graph->setQuantidadeRotas(12);
+            graph->setCapacidadeRotas(200);
         }
          if(graph->getNomeArqv() == "X-n101-k25") {
             graph->setQuantidadeRotas(25);
+            graph->setCapacidadeRotas(206);
         }
          if(graph->getNomeArqv() == "X-n280-k17") {
             graph->setQuantidadeRotas(17);
+            graph->setCapacidadeRotas(192);
         }
 
-        cout << "Qunatidade de rotas é : " << graph->getQtdRotas() << endl;
+
+        cout << "Quantidade de rotas é : " << graph->getQtdRotas() << endl;
         int escolha = 1;
         int qtdExecucoes;
         double alfa;
@@ -193,10 +204,10 @@ int main(int argc, char const *argv[]) {
         }
 
 
-        auto end = chrono::steady_clock::now();
-        cout << "Demorou  "
-             << chrono::duration_cast<chrono::milliseconds>(end - start).count()
-             << " ms para rodar o algoritmo." << endl;
+        // auto end = chrono::steady_clock::now();
+        // cout << "Demorou  "
+        //      << chrono::duration_cast<chrono::milliseconds>(end - start).count()
+        //      << " ms para rodar o algoritmo." << endl;
 
 
     } else

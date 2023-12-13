@@ -25,7 +25,7 @@ class Grafo {
         double** matrizPesos;
 
         int qtdRotasRoteamento;
-
+        int capacidadeDasRotas;
         string nomeArquivo;
 
     public:
@@ -88,6 +88,8 @@ class Grafo {
         
         //METODOS FASE 2: 
         void insereArestaFase2(int idNoOrigem, int idNoDestino);//PARA A FASE 2
+        
+        void setCapacidadeRotas(int capacidade);
         
         void setQuantidadeRotas(int qtd);
 

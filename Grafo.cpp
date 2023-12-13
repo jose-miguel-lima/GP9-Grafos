@@ -308,6 +308,9 @@ void Grafo::insereArestaFase2(int idNoOrigem, int idNoDestino){
     }
 }
 
+void Grafo::setCapacidadeRotas(int capacidade){
+    this->capacidadeDasRotas = capacidade;
+}
 
 void Grafo::setQuantidadeRotas(int qtd){
     this->qtdRotasRoteamento = qtd;
@@ -419,7 +422,7 @@ Solucao* Grafo::guloso1(){
     //inicia contagem do tempo
     auto start = chrono::steady_clock::now();
 
-    Solucao* solucao = new Solucao(this->qtdRotasRoteamento, this->ordem);
+    Solucao* solucao = new Solucao(this->qtdRotasRoteamento, this->ordem, this->capacidadeDasRotas);
     //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
     //mudar de 7 para quantidade de rotas.
     //mudar a geração de numero aleatorio.
@@ -513,7 +516,7 @@ Solucao* Grafo::gulosoRandomizado(double alfa){
     //inicializando semente geradora:
     srand(static_cast<unsigned int>(time(0)));
 
-     Solucao* solucao = new Solucao(this->qtdRotasRoteamento, this->ordem);
+     Solucao* solucao = new Solucao(this->qtdRotasRoteamento, this->ordem, this->capacidadeDasRotas);
      //adiciona o id 1 (depósito) e um no aleatorio em todas as rotas da solucao:
     for(int i = 1; i <= solucao->getQtdRotas(); i++){
         solucao->getRota(i)->addIdNoNaRota(1);
